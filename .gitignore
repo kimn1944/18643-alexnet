@@ -1,0 +1,11 @@
+**/*.log
+**/*.str
+RemoteSystemsTempFiles/
+
+testing/csim
+testing/.Xil
+
+.metadata
+.analytics
+
+**/build

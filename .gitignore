@@ -2,6 +2,8 @@
 **/*.str
 RemoteSystemsTempFiles/
 
+**/Hardware/
+
 testing/csim
 testing/.Xil
 

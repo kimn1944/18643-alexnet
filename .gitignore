@@ -4,6 +4,8 @@ RemoteSystemsTempFiles/
 
 **/Hardware/
 
+**/cscope*
+
 testing/csim
 testing/.Xil
 

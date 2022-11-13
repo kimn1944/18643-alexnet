@@ -22,17 +22,33 @@
           </computeUnits>
         </kernels>
       </binaryContainers>
-      <binaryContainers name="binary_container_X">
-        <kernels name="krnl_cnn_layerX" projectName="cnn_kernels">
-          <computeUnits name="krnl_cnn_layerX_1" slr="">
+      <binaryContainers name="binary_container_2">
+        <kernels name="krnl_cnn_layer2" projectName="cnn_kernels">
+          <computeUnits name="krnl_cnn_layer2_1" slr="">
             <args name="input" master="true" memory=""/>
             <args name="weights" master="true" memory=""/>
             <args name="output" master="true" memory=""/>
             <args name="batch_size"/>
-            <args name="r_ofm"/>
-            <args name="c_ofm"/>
-            <args name="m_ofm"/>
-            <args name="n_ifm"/>
+          </computeUnits>
+        </kernels>
+      </binaryContainers>
+      <binaryContainers name="binary_container_3">
+        <kernels name="krnl_cnn_layer3" projectName="cnn_kernels">
+          <computeUnits name="krnl_cnn_layer3_1" slr="">
+            <args name="input" master="true" memory=""/>
+            <args name="weights" master="true" memory=""/>
+            <args name="output" master="true" memory=""/>
+            <args name="batch_size"/>
+          </computeUnits>
+        </kernels>
+      </binaryContainers>
+      <binaryContainers name="binary_container_4">
+        <kernels name="krnl_cnn_layer4" projectName="cnn_kernels">
+          <computeUnits name="krnl_cnn_layer4_1" slr="">
+            <args name="input" master="true" memory=""/>
+            <args name="weights" master="true" memory=""/>
+            <args name="output" master="true" memory=""/>
+            <args name="batch_size"/>
           </computeUnits>
         </kernels>
       </binaryContainers>
@@ -96,17 +112,33 @@
           </computeUnits>
         </kernels>
       </binaryContainers>
-      <binaryContainers name="binary_container_X">
-        <kernels name="krnl_cnn_layerX" projectName="cnn_kernels">
-          <computeUnits name="krnl_cnn_layerX_1" slr="">
+      <binaryContainers name="binary_container_2">
+        <kernels name="krnl_cnn_layer2" projectName="cnn_kernels">
+          <computeUnits name="krnl_cnn_layer2_1" slr="">
             <args name="input" master="true" memory=""/>
             <args name="weights" master="true" memory=""/>
             <args name="output" master="true" memory=""/>
             <args name="batch_size"/>
-            <args name="r_ofm"/>
-            <args name="c_ofm"/>
-            <args name="m_ofm"/>
-            <args name="n_ifm"/>
+          </computeUnits>
+        </kernels>
+      </binaryContainers>
+      <binaryContainers name="binary_container_3">
+        <kernels name="krnl_cnn_layer3" projectName="cnn_kernels">
+          <computeUnits name="krnl_cnn_layer3_1" slr="">
+            <args name="input" master="true" memory=""/>
+            <args name="weights" master="true" memory=""/>
+            <args name="output" master="true" memory=""/>
+            <args name="batch_size"/>
+          </computeUnits>
+        </kernels>
+      </binaryContainers>
+      <binaryContainers name="binary_container_4">
+        <kernels name="krnl_cnn_layer4" projectName="cnn_kernels">
+          <computeUnits name="krnl_cnn_layer4_1" slr="">
+            <args name="input" master="true" memory=""/>
+            <args name="weights" master="true" memory=""/>
+            <args name="output" master="true" memory=""/>
+            <args name="batch_size"/>
           </computeUnits>
         </kernels>
       </binaryContainers>
@@ -146,17 +178,33 @@
           </computeUnits>
         </kernels>
       </binaryContainers>
-      <binaryContainers name="binary_container_X">
-        <kernels name="krnl_cnn_layerX" projectName="cnn_kernels">
-          <computeUnits name="krnl_cnn_layerX_1" slr="">
+      <binaryContainers name="binary_container_2">
+        <kernels name="krnl_cnn_layer2" projectName="cnn_kernels">
+          <computeUnits name="krnl_cnn_layer2_1" slr="">
             <args name="input" master="true" memory=""/>
             <args name="weights" master="true" memory=""/>
             <args name="output" master="true" memory=""/>
             <args name="batch_size"/>
-            <args name="r_ofm"/>
-            <args name="c_ofm"/>
-            <args name="m_ofm"/>
-            <args name="n_ifm"/>
+          </computeUnits>
+        </kernels>
+      </binaryContainers>
+      <binaryContainers name="binary_container_3">
+        <kernels name="krnl_cnn_layer3" projectName="cnn_kernels">
+          <computeUnits name="krnl_cnn_layer3_1" slr="">
+            <args name="input" master="true" memory=""/>
+            <args name="weights" master="true" memory=""/>
+            <args name="output" master="true" memory=""/>
+            <args name="batch_size"/>
+          </computeUnits>
+        </kernels>
+      </binaryContainers>
+      <binaryContainers name="binary_container_4">
+        <kernels name="krnl_cnn_layer4" projectName="cnn_kernels">
+          <computeUnits name="krnl_cnn_layer4_1" slr="">
+            <args name="input" master="true" memory=""/>
+            <args name="weights" master="true" memory=""/>
+            <args name="output" master="true" memory=""/>
+            <args name="batch_size"/>
           </computeUnits>
         </kernels>
       </binaryContainers>
@@ -182,17 +230,33 @@
           </computeUnits>
         </kernels>
       </binaryContainers>
-      <binaryContainers name="binary_container_X">
-        <kernels name="krnl_cnn_layerX" projectName="cnn_kernels">
-          <computeUnits name="krnl_cnn_layerX_1" slr="">
+      <binaryContainers name="binary_container_2">
+        <kernels name="krnl_cnn_layer2" projectName="cnn_kernels">
+          <computeUnits name="krnl_cnn_layer2_1" slr="">
             <args name="input" master="true" memory=""/>
             <args name="weights" master="true" memory=""/>
             <args name="output" master="true" memory=""/>
             <args name="batch_size"/>
-            <args name="r_ofm"/>
-            <args name="c_ofm"/>
-            <args name="m_ofm"/>
-            <args name="n_ifm"/>
+          </computeUnits>
+        </kernels>
+      </binaryContainers>
+      <binaryContainers name="binary_container_3">
+        <kernels name="krnl_cnn_layer3" projectName="cnn_kernels">
+          <computeUnits name="krnl_cnn_layer3_1" slr="">
+            <args name="input" master="true" memory=""/>
+            <args name="weights" master="true" memory=""/>
+            <args name="output" master="true" memory=""/>
+            <args name="batch_size"/>
+          </computeUnits>
+        </kernels>
+      </binaryContainers>
+      <binaryContainers name="binary_container_4">
+        <kernels name="krnl_cnn_layer4" projectName="cnn_kernels">
+          <computeUnits name="krnl_cnn_layer4_1" slr="">
+            <args name="input" master="true" memory=""/>
+            <args name="weights" master="true" memory=""/>
+            <args name="output" master="true" memory=""/>
+            <args name="batch_size"/>
           </computeUnits>
         </kernels>
       </binaryContainers>

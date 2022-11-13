@@ -23,8 +23,16 @@ if {[get_bd_intf_nets krnl_cnn_layer0_1_m_axi_gmem] != ""} {
     reconnect_krnl krnl_cnn_layer0_1
 }
 
-if {[get_bd_intf_nets krnl_cnn_layerX_1_m_axi_gmem] != ""} {
-    reconnect_krnl krnl_cnn_layerX_1
+if {[get_bd_intf_nets krnl_cnn_layer2_1_m_axi_gmem] != ""} {
+    reconnect_krnl krnl_cnn_layer2_1
+}
+
+if {[get_bd_intf_nets krnl_cnn_layer3_1_m_axi_gmem] != ""} {
+    reconnect_krnl krnl_cnn_layer3_1
+}
+
+if {[get_bd_intf_nets krnl_cnn_layer4_1_m_axi_gmem] != ""} {
+    reconnect_krnl krnl_cnn_layer4_1
 }
 
 set_property offset 0x00000000 [get_bd_addr_segs {krnl_cnn_layer*_1/Data_m_axi_gmem/SEG_interconnect_aximm_ddrmem3_M00_AXI_Reg}]

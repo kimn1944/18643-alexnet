@@ -36,23 +36,19 @@
 #include "lab3_kernels.h"
 #include "cnn_helper.h"
 #include <string.h>
+#include <assert.h>
 
 // Set kernel arguments and execute it
 #ifdef __VITIS_CL__
-void cnn_run_kernel(cl_object &cl_obj, krnl_object &krnl_obj0,
-        krnl_object &krnl_obj1) {
+void static execute_kernel(cl_object &cl_obj, int layer, bool reuse) {
     cl_int err;
 
-    //
-    // Layer 0
-    //
-
-    std::cout << "Running kernel for layer 0..." << std::endl;
+    std::cout << "Running kernel for layer " << layer << "..." << std::endl;
 
     // Get i/o buffers from kernel object
-    cl::Buffer *buffer_in = &cl_obj.buffers[0];
-    cl::Buffer *buffer_wts = &cl_obj.buffers[1];
-    cl::Buffer *buffer_out = &cl_obj.buffers[2];
+    cl::Buffer *buffer_in = &cl_obj.buffers[layer * 2];
+    cl::Buffer *buffer_wts = &cl_obj.buffers[layer * 2 + 1];
+    cl::Buffer *buffer_out = &cl_obj.buffers[layer * 2 + 2];
 
     // Set the kernel Arguments
     uint64_t narg = 0;
@@ -61,12 +57,12 @@ void cnn_run_kernel(cl_object &cl_obj, krnl_object &krnl_obj0,
     OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, *buffer_out));           // output
     OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, (uint64_t) BATCH_SIZE)); // batch size
 
-#ifndef ENABLE_DFX
-    OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, (uint64_t) R_OFM(0)));   // Rows
-    OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, (uint64_t) C_OFM(0)));   // Cols
-    OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, (uint64_t) M_OFM(0)));   // Output channels
-    OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, (uint64_t) N_IFM(0)));   // Input channels
-#endif
+    if (reuse) {
+        OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, (uint64_t) R_OFM(layer)));
+        OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, (uint64_t) C_OFM(layer)));
+        OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, (uint64_t) M_OFM(layer)));
+        OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, (uint64_t) N_IFM(layer)));
+    }
 
     // Data will be migrated to kernel space
     OCL_CHECK(err, err = cl_obj.q.enqueueMigrateMemObjects({*buffer_in, *buffer_wts}, 0/* 0 means from host*/));
@@ -81,49 +77,29 @@ void cnn_run_kernel(cl_object &cl_obj, krnl_object &krnl_obj0,
 
     // Wait for all tasks to finish
     OCL_CHECK(err, cl_obj.q.finish());
+}
 
-    //
+// TODO change this when we have less kernels, remove program_kernel()
+void cnn_run_kernel(cl_object &cl_obj, krnl_object *krnl_obj) {
+
+    // Layer 0
+    execute_kernel(cl_obj, 0, false);
+
     // Layer 1
-    //
-#ifdef ENABLE_DFX
-    std::cout << "---- Using DFX :D ----" << std::endl;
-    program_kernel(cl_obj, krnl_obj1);
-#endif
+    program_kernel(cl_obj, krnl_obj[1]);
+    execute_kernel(cl_obj, 1, false);
 
-    std::cout << "Running kernel for layer 1..." << std::endl;
+    // Layer 2
+    program_kernel(cl_obj, krnl_obj[2]);
+    execute_kernel(cl_obj, 2, false);
 
-    // Get i/o buffers from kernel object
-    buffer_in = &cl_obj.buffers[2];
-    buffer_wts = &cl_obj.buffers[3];
-    buffer_out = &cl_obj.buffers[4];
+    // Layer 3
+    program_kernel(cl_obj, krnl_obj[3]);
+    execute_kernel(cl_obj, 3, false);
 
-    // Set the kernel Arguments
-    narg = 0;
-    OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, *buffer_in));            // input
-    OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, *buffer_wts));           // weights
-    OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, *buffer_out));           // output
-    OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, (uint64_t) BATCH_SIZE)); // batch size
-
-#ifndef ENABLE_DFX
-    OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, (uint64_t) R_OFM(1)));   // Rows
-    OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, (uint64_t) C_OFM(1)));   // Cols
-    OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, (uint64_t) M_OFM(1)));   // Output channels
-    OCL_CHECK(err, err = cl_obj.krnl->setArg(narg++, (uint64_t) N_IFM(1)));   // Input channels
-#endif
-
-    // Data will be migrated to kernel space
-    OCL_CHECK(err, err = cl_obj.q.enqueueMigrateMemObjects({*buffer_in, *buffer_wts},0/* 0 means from host*/));
-
-    // Launch the Kernel; this is nonblocking.
-    OCL_CHECK(err, err = cl_obj.q.enqueueTask(*cl_obj.krnl));
-
-    // The result of the previous kernel execution will need to be retrieved in
-    // order to view the results. This call will transfer the data from FPGA to
-    // source_results vector
-    OCL_CHECK(err, cl_obj.q.enqueueMigrateMemObjects({*buffer_out}, CL_MIGRATE_MEM_OBJECT_HOST));
-
-    // Wait for all tasks to finish
-    OCL_CHECK(err, cl_obj.q.finish());
+    // Layer 4
+    program_kernel(cl_obj, krnl_obj[4]);
+    execute_kernel(cl_obj, 4, false);
 
     std::cout << "Kernel executions completed" << std::endl;
 }
@@ -146,16 +122,34 @@ bool verify(cnndata_t *ref, cnndata_t *checkit, uint64_t iter, uint64_t layer) {
             for(col = 0; col < C_OFM(layer) ; col++) {
                 cnndata_t refval = ARRAY4(ref, iter, to, row, col,
                         BATCH_SIZE, M_OFM(layer), R_OFM(layer), C_OFM(layer));
-#ifdef ENABLE_DFX
-                cnndata_t checkval = (layer ?
-                    ARRAYo_1(checkit, iter, to, row, col, BATCH_SIZE,
-                        M_OFM(layer), R_OFM(layer), C_OFM(layer)) :
-                    ARRAYo_0(checkit, iter, to, row, col, BATCH_SIZE,
-                        M_OFM(layer), R_OFM(layer), C_OFM(layer)));
-#else
-                cnndata_t checkval = ARRAYo_X(checkit, iter, to, row, col,
-                    BATCH_SIZE, M_OFM(layer), R_OFM(layer), C_OFM(layer));
-#endif
+
+                cnndata_t checkval;
+                // TODO modify when changing kernel count
+                switch (layer) {
+                case (0):
+                    checkval = ARRAYo_0(checkit, iter, to, row, col, BATCH_SIZE,
+                             M_OFM(layer), R_OFM(layer), C_OFM(layer));
+                    break;
+                case (1):
+                    checkval = ARRAYo_1(checkit, iter, to, row, col, BATCH_SIZE,
+                             M_OFM(layer), R_OFM(layer), C_OFM(layer));
+                    break;
+                case (2):
+                    checkval = ARRAYo_2(checkit, iter, to, row, col, BATCH_SIZE,
+                             M_OFM(layer), R_OFM(layer), C_OFM(layer));
+                    break;
+                case (3):
+                    checkval = ARRAYo_3(checkit, iter, to, row, col, BATCH_SIZE,
+                             M_OFM(layer), R_OFM(layer), C_OFM(layer));
+                    break;
+                case (4):
+                    checkval = ARRAYo_4(checkit, iter, to, row, col, BATCH_SIZE,
+                             M_OFM(layer), R_OFM(layer), C_OFM(layer));
+                    break;
+                default:
+                    assert(false);
+                }
+
                 if (!nearlyEqual(checkval, refval)) {
                     printf("\n***Result does not match reference: layer = %lu, "
                             "row = %lu, col = %lu***\n", to, row, col);
@@ -193,17 +187,34 @@ void print_params(uint64_t layer) {
     std::cout << "Batch size: " << (uint64_t) BATCH_SIZE << std::endl;
 
     printf("Layer Parameters: \nK_wts: \t%d\tS_wts:\t%d\nR_ofm:\t%d\tC_ofm:"
-           "\t%d\tM_ofm:\t%d\tN_ifm:\t%d\n", K_WTS, S_WTS, R_OFM(layer),
-           C_OFM(layer), M_OFM(layer), N_IFM(layer));
+           "\t%d\tM_ofm:\t%d\tN_ifm:\t%dR_ifm:\t%dC_ifm:\t%d\n", K_WTS, S_WTS, R_OFM(layer),
+           C_OFM(layer), M_OFM(layer), N_IFM(layer), R_IFM(layer), C_IFM(layer));
 
-#ifdef ENABLE_DFX
-    printf("Kernel Parameters: \nTr: \t%d\tTc:\t%d\tTm:\t%d\tTn:\t%d\n\n",
-            layer ? TR_1 : TR_0, layer ? TC_1 : TC_0, layer ? TM_1 : TM_0,
-            layer ? TN_1 : TN_0);
-#else
-    printf("Kernel Parameters: \nTr: \t%d\tTc:\t%d\tTm:\t%d\tTn:\t%d\n\n",
-            TR_X, TC_X, TM_X, TN_X);
-#endif
+    // TODO modify when we have less kernels
+    switch (layer) {
+    case 0:
+        printf("Kernel Parameters: \nTr: \t%d\tTc:\t%d\tTm:\t%d\tTn:\t%d\n\n",
+                TR_0, TC_0, TM_0, TN_0);
+        break;
+    case 1:
+        printf("Kernel Parameters: \nTr: \t%d\tTc:\t%d\tTm:\t%d\tTn:\t%d\n\n",
+                TR_1, TC_1, TM_1, TN_1);
+        break;
+    case 2:
+        printf("Kernel Parameters: \nTr: \t%d\tTc:\t%d\tTm:\t%d\tTn:\t%d\n\n",
+                TR_2, TC_2, TM_2, TN_2);
+        break;
+    case 3:
+        printf("Kernel Parameters: \nTr: \t%d\tTc:\t%d\tTm:\t%d\tTn:\t%d\n\n",
+                TR_3, TC_3, TM_3, TN_3);
+        break;
+    case 4:
+        printf("Kernel Parameters: \nTr: \t%d\tTc:\t%d\tTm:\t%d\tTn:\t%d\n\n",
+                TR_4, TC_4, TM_4, TN_4);
+        break;
+    default:
+        assert(false);
+    }
 }
 
 void initialize_buffer(cnndata_t *ptr, unsigned size, bool notzero) {

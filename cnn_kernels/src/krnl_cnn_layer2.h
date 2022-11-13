@@ -35,10 +35,52 @@
 
 #pragma once
 
-#include "krnl_cnn_layer0.h"
-#include "krnl_cnn_layer1.h"
-#include "krnl_cnn_layer2.h"
-#include "krnl_cnn_layer3.h"
-#include "krnl_cnn_layer4.h"
+/*
+ * CMU 18643 Fall 2022 Lab Exercise
+ *
+ * The parameters in this file sets the CNN kernel on FPGA
+ *
+ * You can edit this file
+ */
+#include "util643.h"
+#include "instance643.h"
 
-#define ENABLE_DFX      // Uncomment this line out if you want to use DFX
+typedef uint32_t index_t;
+
+/*
+ * In the below, you can set the tile size and the
+ * DRAM buffer access macros for the input, weight, and
+ * output buffers to change the data layout from the
+ * standard natural layout
+ */
+
+//////////////////////////////////////////////////////
+// Layer 2 - Hardcoded Implementation if using DFX
+//////////////////////////////////////////////////////
+#define TR_2 (8) // output row
+#define TC_2 (8) // output column
+#define TM_2 (8) // output depth
+#define TN_2 (8) // input depth
+
+// Input 2 must use same macro as Output 1 so that the kernel
+// can communicate from layer 1 to layer 2
+#define ARRAYi_2(ptr,iB,iN,iR,iC,dB,dN,dR,dC)               \
+((ptr)[(iB)*(dN)*(dR)*(dC)+(iN)*(dR)*(dC)+(iR)*(dC)+(iC)])
+
+#define ARRAYo_2(ptr,iB,iM,iR,iC,dB,dM,dR,dC)               \
+((ptr)[(iB)*(dM)*(dR)*(dC)+(iM)*(dR)*(dC)+(iR)*(dC)+(iC)])
+
+#define ARRAYw_2(ptr,iM,iN,iR,iC,dM,dN,dR,dC)               \
+((ptr)[(iM)*(dN)*(dR)*(dC)+(iN)*(dR)*(dC)+(iR)*(dC)+(iC)])
+
+
+/////////////////////////////////////////////////////////////
+// The below are used by the host side code.
+// You should not need to edit below this point for Lab 3
+/////////////////////////////////////////////////////////////
+
+#ifdef __VITIS_CL__
+extern "C"
+#endif
+void krnl_cnn_layer2(const cnndata_t* input, const cnndata_t* weights,
+        cnndata_t* output, uint64_t batch_size);

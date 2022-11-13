@@ -52,57 +52,126 @@ static inline bool nearlyEqual(cnndata_t a, cnndata_t b) { return a == b; }
 
 #if 1 // fullsize
 
-#define BATCH_SIZE 10
+/*********************************************************************************************************
+                                                 FULLSIZE
+*********************************************************************************************************/
+
+#define BATCH_SIZE 1
+
+//
+// Layer 4
+//
+#define r_4 (8)                                 // height
+#define c_4 (8)                                 // width
+#define m_4 (128)                           // depth
+#define n_4 (256)                              // depth
+#define r_i4 (r_4*S_WTS+K_WTS-S_WTS)       // derived height
+#define c_i4 (c_4*S_WTS+K_WTS-S_WTS)       // derived width
+
+//
+// Layer 3
+//
+#define r_3 (18)                             // height
+#define c_3 (18)                             // width
+#define m_3 (256)                             // depth
+#define n_3 (256)                             // depth
+#define r_i3 (r_3*S_WTS+K_WTS-S_WTS)       // derived height
+#define c_i3 (c_3*S_WTS+K_WTS-S_WTS)       // derived width
+
+//
+// Layer 2
+//
+#define r_2 (38)                         // height
+#define c_2 (38)                         // width
+#define m_2 (256)                         // depth
+#define n_2 (128)                              // depth
+#define r_i2 (r_2*S_WTS+K_WTS-S_WTS)       // derived height
+#define c_i2 (c_2*S_WTS+K_WTS-S_WTS)       // derived width
 
 //
 // Layer 1
 //
-#define r_ofm1 (64)                             // height
-#define c_ofm1 (64)                             // width
-#define m_ofm1 (16)                             // depth
-#define r_ifm1 (r_ofm1*S_WTS+K_WTS-S_WTS)       // derived height
-#define c_ifm1 (c_ofm1*S_WTS+K_WTS-S_WTS)       // derived width
-#define n_ifm1 (64)                             // depth
+#define r_1 (78)                             // height
+#define c_1 (78)                             // width
+#define m_1 (128)                             // depth
+#define n_1 (64)                             // depth
+#define r_i1 (r_1*S_WTS+K_WTS-S_WTS)       // derived height
+#define c_i1 (c_1*S_WTS+K_WTS-S_WTS)       // derived width
 
 //
 // Layer 0
 //
-#define r_ofm0 (r_ifm1)                         // height
-#define c_ofm0 (c_ifm1)                         // width
-#define m_ofm0 (n_ifm1)                         // depth
-#define r_ifm0 (r_ofm0*S_WTS+K_WTS-S_WTS)       // derived height
-#define c_ifm0 (c_ofm0*S_WTS+K_WTS-S_WTS)       // derived width
-#define n_ifm0 (4)                              // depth
+#define r_0 (158)                         // height
+#define c_0 (158)                         // width
+#define m_0 (64)                         // depth
+#define n_0 (4)                              // depth
+#define r_i0 (r_0*S_WTS+K_WTS-S_WTS)       // derived height
+#define c_i0 (c_0*S_WTS+K_WTS-S_WTS)       // derived width
 
 #else // SW emulation debug small
 
+/*********************************************************************************************************
+                                                 SMALL
+*********************************************************************************************************/
+
 #define BATCH_SIZE 3
+
+// FIXME
+//
+// Layer 4
+//
+#define r_4 (4)                                 // height
+#define c_4 (4)                                 // width
+#define m_4 (16)                           // depth
+#define n_4 (32)                              // depth
+#define r_i4 (r_4*S_WTS+K_WTS-S_WTS)       // derived height
+#define c_i4 (c_4*S_WTS+K_WTS-S_WTS)       // derived width
+
+//
+// Layer 3
+//
+#define r_3 (10)                             // height
+#define c_3 (10)                             // width
+#define m_3 (32)                             // depth
+#define n_3 (32)                             // depth
+#define r_i3 (r_3*S_WTS+K_WTS-S_WTS)       // derived height
+#define c_i3 (c_3*S_WTS+K_WTS-S_WTS)       // derived width
+
+//
+// Layer 2
+//
+#define r_2 (38)                         // height
+#define c_2 (38)                         // width
+#define m_2 (256)                         // depth
+#define n_2 (128)                              // depth
+#define r_i2 (r_2*S_WTS+K_WTS-S_WTS)       // derived height
+#define c_i2 (c_2*S_WTS+K_WTS-S_WTS)       // derived width
 
 //
 // Layer 1
 //
-#define r_ofm1 (10)                             // height
-#define c_ofm1 (11)                             // width
-#define m_ofm1 (3)                              // depth
-#define r_ifm1 (r_ofm1*S_WTS+K_WTS-S_WTS)       // derived height
-#define c_ifm1 (c_ofm1*S_WTS+K_WTS-S_WTS)       // derived width
-#define n_ifm1 (4)                              // depth
+#define r_1 (78)                             // height
+#define c_1 (78)                             // width
+#define m_1 (128)                             // depth
+#define n_1 (64)                             // depth
+#define r_i1 (r_1*S_WTS+K_WTS-S_WTS)       // derived height
+#define c_i1 (c_1*S_WTS+K_WTS-S_WTS)       // derived width
 
 //
 // Layer 0
 //
-#define r_ofm0 (r_ifm1)                         // height
-#define c_ofm0 (c_ifm1)                         // width
-#define m_ofm0 (n_ifm1)                         // depth
-#define r_ifm0 (r_ofm0*S_WTS+K_WTS-S_WTS)       // derived height
-#define c_ifm0 (c_ofm0*S_WTS+K_WTS-S_WTS)       // derived width
-#define n_ifm0 (5)                              // depth
+#define r_0 (158)                         // height
+#define c_0 (158)                         // width
+#define m_0 (64)                         // depth
+#define n_0 (4)                              // depth
+#define r_i0 (r_0*S_WTS+K_WTS-S_WTS)       // derived height
+#define c_i0 (c_0*S_WTS+K_WTS-S_WTS)       // derived width
 
 #endif
 
-#define R_OFM(layer) ((layer == 1) ? r_ofm1 : r_ofm0)
-#define C_OFM(layer) ((layer == 1) ? c_ofm1 : c_ofm0)
-#define M_OFM(layer) ((layer == 1) ? m_ofm1 : m_ofm0)
-#define R_IFM(layer) ((layer == 1) ? r_ifm1 : r_ifm0)
-#define C_IFM(layer) ((layer == 1) ? c_ifm1 : c_ifm0)
-#define N_IFM(layer) ((layer == 1) ? n_ifm1 : n_ifm0)
+#define R_OFM(layer) ((layer == 0) ? r_0 : ((layer == 1) ? r_1 : ((layer == 2) ? r_2 : ((layer == 3) ? r_3 : r_4))))
+#define C_OFM(layer) ((layer == 0) ? c_0 : ((layer == 1) ? c_1 : ((layer == 2) ? c_2 : ((layer == 3) ? c_3 : c_4))))
+#define M_OFM(layer) ((layer == 0) ? m_0 : ((layer == 1) ? m_1 : ((layer == 2) ? m_2 : ((layer == 3) ? m_3 : m_4))))
+#define N_IFM(layer) ((layer == 0) ? n_0 : ((layer == 1) ? n_1 : ((layer == 2) ? n_2 : ((layer == 3) ? n_3 : n_4))))
+#define R_IFM(layer) ((layer == 0) ? r_i0 : ((layer == 1) ? r_i1 : ((layer == 2) ? r_i2 : ((layer == 3) ? r_i3 : r_i4))))
+#define C_IFM(layer) ((layer == 0) ? c_i0 : ((layer == 1) ? c_i1 : ((layer == 2) ? c_i2 : ((layer == 3) ? c_i3 : c_i4))))

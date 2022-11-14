@@ -82,6 +82,7 @@ void static execute_kernel(cl_object &cl_obj, int layer, bool reuse) {
 // TODO change this when we have less kernels, remove program_kernel()
 void cnn_run_kernel(cl_object &cl_obj, krnl_object *krnl_obj) {
 
+    //TODO: LUPE add timing
     // Layer 0
     execute_kernel(cl_obj, 0, false);
 

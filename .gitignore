@@ -3,6 +3,9 @@
 RemoteSystemsTempFiles/
 
 **/Hardware/
+**/Emulation-SW/
+
+.Xil/
 
 **/cscope*
 

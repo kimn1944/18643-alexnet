@@ -54,7 +54,6 @@ typedef uint32_t index_t;
  * standard natural layout
  */
 
-
 //////////////////////////////////////////////////////
 // Layer 0 - Hardcoded Implementation if using DFX
 //////////////////////////////////////////////////////
@@ -63,16 +62,26 @@ typedef uint32_t index_t;
 #define TM_0 (4) // output depth
 #define TN_0 (4) // input depth
 
-#define ARRAYi_0(ptr,iB,iN,iR,iC,dB,dN,dR,dC)               \
+// Input 1 must use same macro as Output 0 so that the kernel
+// can communicate from layer 0 to layer 1
+//#define ARRAYi_0(ptr,iB,iN,iR,iC,dB,dN,dR,dC)               \
 ((ptr)[(iB)*(dN)*(dR)*(dC)+(iN)*(dR)*(dC)+(iR)*(dC)+(iC)])
 
-#define ARRAYo_0(ptr,iB,iM,iR,iC,dB,dM,dR,dC)               \
+#define ARRAYi_0(ptr,iB,iN,iR,iC,dB,dN,dR,dC)               \
+((ptr)[(iB)*(dR)*(dC)*(dN)+(iR)*(dC)*(dN)+(iC)*(dN)+(iN)])
+
+//#define ARRAYo_0(ptr,iB,iM,iR,iC,dB,dM,dR,dC)               \
 ((ptr)[(iB)*(dM)*(dR)*(dC)+(iM)*(dR)*(dC)+(iR)*(dC)+(iC)])
 
-// Output 0 must use same macro as Input 1 so that the kernel
-// can communicate from layer 0 to layer 1
-#define ARRAYw_0(ptr,iM,iN,iR,iC,dM,dN,dR,dC)               \
+#define ARRAYo_0(ptr,iB,iM,iR,iC,dB,dM,dR,dC)               \
+((ptr)[(iB)*(dR)*(dC)*(dM)+(iR)*(dM)*(dC)+(iC)*(dM)+(iM)])
+
+//#define ARRAYw_0(ptr,iM,iN,iR,iC,dM,dN,dR,dC)               \
 ((ptr)[(iM)*(dN)*(dR)*(dC)+(iN)*(dR)*(dC)+(iR)*(dC)+(iC)])
+
+#define ARRAYw_0(ptr,iM,iN,iR,iC,dM,dN,dR,dC)               \
+((ptr)[(iR)*(dC)*(dM)*(dN)+(iC)*(dM)*(dN)+(iM)*(dN)+(iN)])
+
 
 /////////////////////////////////////////////////////////////
 // The below are used by the host side code.

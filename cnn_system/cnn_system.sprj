@@ -28,12 +28,12 @@
     <configBuildOptions xsi:type="systemproject:SystemOptions" target="hw">
       <applications name="cnn_system_hw_link" domainName="" domainPrettyName="pl" appBuildConfig="Hardware"/>
       <applications name="cnn_kernels" domainName="" domainPrettyName="pl" appBuildConfig="Hardware"/>
-      <applications name="cnn" domainName="xrt" domainPrettyName="xrt" appBuildConfig="Hardware"/>
+      <applications name="cnn" domainName="linux_domain" domainPrettyName="petalinux" appBuildConfig="Hardware"/>
     </configBuildOptions>
     <lastBuildOptions xsi:type="systemproject:SystemOptions" target="hw">
       <applications name="cnn_system_hw_link" domainName="" domainPrettyName="pl" appBuildConfig="Hardware"/>
       <applications name="cnn_kernels" domainName="" domainPrettyName="pl" appBuildConfig="Hardware"/>
-      <applications name="cnn" domainName="xrt" domainPrettyName="xrt" appBuildConfig="Hardware"/>
+      <applications name="cnn" domainName="linux_domain" domainPrettyName="petalinux" appBuildConfig="Hardware"/>
     </lastBuildOptions>
   </configuration>
 </systemproject:SystemProject>

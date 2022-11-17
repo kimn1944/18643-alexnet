@@ -57,21 +57,30 @@ typedef uint32_t index_t;
 //////////////////////////////////////////////////////
 // Layer 2 - Hardcoded Implementation if using DFX
 //////////////////////////////////////////////////////
-#define TR_2 (8) // output row
-#define TC_2 (8) // output column
-#define TM_2 (8) // output depth
-#define TN_2 (8) // input depth
+#define TR_2 (4) // output row
+#define TC_2 (4) // output column
+#define TM_2 (4) // output depth
+#define TN_2 (4) // input depth
 
-// Input 2 must use same macro as Output 1 so that the kernel
-// can communicate from layer 1 to layer 2
-#define ARRAYi_2(ptr,iB,iN,iR,iC,dB,dN,dR,dC)               \
+// Input 1 must use same macro as Output 0 so that the kernel
+// can communicate from layer 0 to layer 1
+//#define ARRAYi_2(ptr,iB,iN,iR,iC,dB,dN,dR,dC)               \
 ((ptr)[(iB)*(dN)*(dR)*(dC)+(iN)*(dR)*(dC)+(iR)*(dC)+(iC)])
 
-#define ARRAYo_2(ptr,iB,iM,iR,iC,dB,dM,dR,dC)               \
+#define ARRAYi_2(ptr,iB,iN,iR,iC,dB,dN,dR,dC)               \
+((ptr)[(iB)*(dR)*(dC)*(dN)+(iR)*(dC)*(dN)+(iC)*(dN)+(iN)])
+
+//#define ARRAYo_2(ptr,iB,iM,iR,iC,dB,dM,dR,dC)               \
 ((ptr)[(iB)*(dM)*(dR)*(dC)+(iM)*(dR)*(dC)+(iR)*(dC)+(iC)])
 
-#define ARRAYw_2(ptr,iM,iN,iR,iC,dM,dN,dR,dC)               \
+#define ARRAYo_2(ptr,iB,iM,iR,iC,dB,dM,dR,dC)               \
+((ptr)[(iB)*(dR)*(dC)*(dM)+(iR)*(dM)*(dC)+(iC)*(dM)+(iM)])
+
+//#define ARRAYw_2(ptr,iM,iN,iR,iC,dM,dN,dR,dC)               \
 ((ptr)[(iM)*(dN)*(dR)*(dC)+(iN)*(dR)*(dC)+(iR)*(dC)+(iC)])
+
+#define ARRAYw_2(ptr,iM,iN,iR,iC,dM,dN,dR,dC)               \
+((ptr)[(iR)*(dC)*(dM)*(dN)+(iC)*(dM)*(dN)+(iM)*(dN)+(iN)])
 
 
 /////////////////////////////////////////////////////////////

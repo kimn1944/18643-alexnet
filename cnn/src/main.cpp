@@ -35,12 +35,12 @@
 
 #include "lab3_kernels.h"
 #include "cnn_helper.h"
-#include <sys/time.h>
 
 using namespace std;
 
 int main(int argc, char* argv[]) {
-    struct timeval start_time, end_time;
+	times_t times;
+
     bool mismatch[5] = {false, false, false, false, false};
 
     cnndata_t *ptr_input, *ptr_weight[5], *ptr_output[5];
@@ -158,10 +158,10 @@ int main(int argc, char* argv[]) {
         initialize_buffer(ptr_output[i], num_elem_outputs[i], true); // cannot assume 0'ed
 
     cout << "\n===== Execution and Timing starts ======" << endl;
-    gettimeofday(&start_time, NULL);
+    gettimeofday(&times.start_time, NULL);
 
 #ifdef __VITIS_CL__
-    cnn_run_kernel(cl_obj, cnn_obj);
+    cnn_run_kernel(cl_obj, cnn_obj, &times);
 #else
     // TODO change this when we have less kernels
     krnl_cnn_layer0(ptr_input, ptr_weight[0], ptr_output[0], BATCH_SIZE);
@@ -171,8 +171,8 @@ int main(int argc, char* argv[]) {
     krnl_cnn_layer4(ptr_output[3], ptr_weight[4], ptr_output[4], BATCH_SIZE);
 #endif
 
-    gettimeofday(&end_time, NULL);
     cout << "Execution and Timing finished!\n" << endl;
+    gettimeofday(&times.end_time, NULL);
 
     cout << "===== Verification starts ======" << endl;
     mismatch[0] = cnn_check(ptr_input, ptr_weight[0], ptr_output[0], ref_input,
@@ -197,9 +197,49 @@ int main(int argc, char* argv[]) {
     }
 
     cout << "===== Reporting measured throughput ======" << endl;
-    float timeusec = (end_time.tv_sec - start_time.tv_sec)*1e6
-                     + (end_time.tv_usec - start_time.tv_usec);
-    printf("Runtime = %0.1f (microsec) \n\n", timeusec);
+
+#ifdef __VITIS_CL__
+    // TODO modify when we have less kernels
+    float timeusec_layer0 = (times.layer0_end.tv_sec - times.layer0_start.tv_sec)*1e6
+                     + (times.layer0_end.tv_usec - times.layer0_start.tv_usec);
+    printf("Layer0 Runtime = %0.1f (microsec) \n\n", timeusec_layer0);
+    
+    float timeusec_layer01_recon = (times.layer01_recon_end.tv_sec - times.layer01_recon_start.tv_sec)*1e6
+                     + (times.layer01_recon_end.tv_usec - times.layer01_recon_start.tv_usec);
+    printf("Layer01 Recon Runtime = %0.1f (microsec) \n\n", timeusec_layer01_recon);
+
+    float timeusec_layer1 = (times.layer1_end.tv_sec - times.layer1_start.tv_sec)*1e6
+                     + (times.layer1_end.tv_usec - times.layer1_start.tv_usec);
+    printf("Layer1 Runtime = %0.1f (microsec) \n\n", timeusec_layer1);
+    
+    float timeusec_layer12_recon = (times.layer12_recon_end.tv_sec - times.layer12_recon_start.tv_sec)*1e6
+                     + (times.layer12_recon_end.tv_usec - times.layer12_recon_start.tv_usec);
+    printf("Layer12 Recon Runtime = %0.1f (microsec) \n\n", timeusec_layer12_recon);
+
+    float timeusec_layer2 = (times.layer2_end.tv_sec - times.layer2_start.tv_sec)*1e6
+                     + (times.layer2_end.tv_usec - times.layer2_start.tv_usec);
+    printf("Layer2 Runtime = %0.1f (microsec) \n\n", timeusec_layer2);
+    
+    float timeusec_layer23_recon = (times.layer23_recon_end.tv_sec - times.layer23_recon_start.tv_sec)*1e6
+                     + (times.layer23_recon_end.tv_usec - times.layer23_recon_start.tv_usec);
+    printf("Layer23 Recon Runtime = %0.1f (microsec) \n\n", timeusec_layer23_recon);
+
+    float timeusec_layer3 = (times.layer3_end.tv_sec - times.layer3_start.tv_sec)*1e6
+                     + (times.layer3_end.tv_usec - times.layer3_start.tv_usec);
+    printf("Layer3 Runtime = %0.1f (microsec) \n\n", timeusec_layer3);
+    
+    float timeusec_layer34_recon = (times.layer34_recon_end.tv_sec - times.layer34_recon_start.tv_sec)*1e6
+                     + (times.layer34_recon_end.tv_usec - times.layer34_recon_start.tv_usec);
+    printf("Layer34 Recon Runtime = %0.1f (microsec) \n\n", timeusec_layer34_recon);
+
+    float timeusec_layer4 = (times.layer4_end.tv_sec - times.layer4_start.tv_sec)*1e6
+                     + (times.layer4_end.tv_usec - times.layer4_start.tv_usec);
+    printf("Layer4 Runtime = %0.1f (microsec) \n\n", timeusec_layer4);
+#endif
+    
+    float timeusec = (times.end_time.tv_sec - times.start_time.tv_sec)*1e6
+                     + (times.end_time.tv_usec - times.start_time.tv_usec);
+    printf("Total Runtime = %0.1f (microsec) \n\n", timeusec);
     double num_ops[5] = {
         BATCH_SIZE * (double)2.0 * M_OFM(0) * R_OFM(0) * C_OFM(0) * N_IFM(0) * K_WTS * K_WTS,
         BATCH_SIZE * (double)2.0 * M_OFM(1) * R_OFM(1) * C_OFM(1) * N_IFM(1) * K_WTS * K_WTS,

@@ -80,27 +80,44 @@ void static execute_kernel(cl_object &cl_obj, int layer, bool reuse) {
 }
 
 // TODO change this when we have less kernels, remove program_kernel()
-void cnn_run_kernel(cl_object &cl_obj, krnl_object *krnl_obj) {
+void cnn_run_kernel(cl_object &cl_obj, krnl_object *krnl_obj, times_t *times) {
 
-    //TODO: LUPE add timing
     // Layer 0
+    gettimeofday(&times->layer0_start, NULL);
     execute_kernel(cl_obj, 0, false);
+    gettimeofday(&times->layer0_end, NULL);
 
     // Layer 1
+    gettimeofday(&times->layer01_recon_start, NULL);
     program_kernel(cl_obj, krnl_obj[1]);
+    gettimeofday(&times->layer01_recon_end, NULL);
+    gettimeofday(&times->layer1_start, NULL);
     execute_kernel(cl_obj, 1, false);
+    gettimeofday(&times->layer1_end, NULL);
 
     // Layer 2
+    gettimeofday(&times->layer12_recon_start, NULL);
     program_kernel(cl_obj, krnl_obj[2]);
+    gettimeofday(&times->layer12_recon_end, NULL);
+    gettimeofday(&times->layer2_start, NULL);
     execute_kernel(cl_obj, 2, false);
+    gettimeofday(&times->layer2_end, NULL);
 
     // Layer 3
+    gettimeofday(&times->layer23_recon_start, NULL);
     program_kernel(cl_obj, krnl_obj[3]);
+    gettimeofday(&times->layer23_recon_end, NULL);
+    gettimeofday(&times->layer3_start, NULL);
     execute_kernel(cl_obj, 3, false);
+    gettimeofday(&times->layer3_end, NULL);
 
     // Layer 4
+    gettimeofday(&times->layer34_recon_start, NULL);
     program_kernel(cl_obj, krnl_obj[4]);
+    gettimeofday(&times->layer34_recon_end, NULL);
+    gettimeofday(&times->layer4_start, NULL);
     execute_kernel(cl_obj, 4, false);
+    gettimeofday(&times->layer4_end, NULL);
 
     std::cout << "Kernel executions completed" << std::endl;
 }
@@ -188,7 +205,7 @@ void print_params(uint64_t layer) {
     std::cout << "Batch size: " << (uint64_t) BATCH_SIZE << std::endl;
 
     printf("Layer Parameters: \nK_wts: \t%d\tS_wts:\t%d\nR_ofm:\t%d\tC_ofm:"
-           "\t%d\tM_ofm:\t%d\tN_ifm:\t%dR_ifm:\t%dC_ifm:\t%d\n", K_WTS, S_WTS, R_OFM(layer),
+           "\t%d\tM_ofm:\t%d\tN_ifm:\t%d\tR_ifm:\t%d\tC_ifm:\t%d\n", K_WTS, S_WTS, R_OFM(layer),
            C_OFM(layer), M_OFM(layer), N_IFM(layer), R_IFM(layer), C_IFM(layer));
 
     // TODO modify when we have less kernels

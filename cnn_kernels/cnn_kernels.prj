@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <hwkernel:HwKernelProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:hwkernel="http://www.xilinx.com/acceleration/hwkernel" name="cnn_kernels" platform="/opt/xilinx/platforms/cmu_u96v2_dfx_full/cmu_u96v2_dfx_full.xpfm" platformUID="cmu:u96:dynamic:1.0" systemProject="cnn_system" sysConfig="cmu_u96v2_dfx_full" cpu="">
-  <configuration name="Emulation-SW" id="com.xilinx.ide.accel.config.hwkernel.sw_emu.548008822" dirty="true">
+  <configuration name="Emulation-SW" id="com.xilinx.ide.accel.config.hwkernel.sw_emu.548008822">
     <configBuildOptions xsi:type="hwkernel:KernelOptions" kernelDebug="true">
       <kernels name="krnl_cnn_layer0" sourceFile="src/krnl_cnn_layer0.cpp">
         <args name="input" master="true"/>
@@ -34,16 +34,6 @@
       </kernels>
     </configBuildOptions>
     <lastBuildOptions xsi:type="hwkernel:KernelOptions" kernelDebug="true">
-      <kernels name="krnl_cnn_layerX" sourceFile="src/krnl_cnn.cpp">
-        <args name="input" master="true"/>
-        <args name="weights" master="true"/>
-        <args name="output" master="true"/>
-        <args name="batch_size"/>
-        <args name="r_ofm"/>
-        <args name="c_ofm"/>
-        <args name="m_ofm"/>
-        <args name="n_ifm"/>
-      </kernels>
       <kernels name="krnl_cnn_layer0" sourceFile="src/krnl_cnn_layer0.cpp">
         <args name="input" master="true"/>
         <args name="weights" master="true"/>
@@ -51,6 +41,24 @@
         <args name="batch_size"/>
       </kernels>
       <kernels name="krnl_cnn_layer1" sourceFile="src/krnl_cnn_layer1.cpp">
+        <args name="input" master="true"/>
+        <args name="weights" master="true"/>
+        <args name="output" master="true"/>
+        <args name="batch_size"/>
+      </kernels>
+      <kernels name="krnl_cnn_layer2" sourceFile="src/krnl_cnn_layer2.cpp">
+        <args name="input" master="true"/>
+        <args name="weights" master="true"/>
+        <args name="output" master="true"/>
+        <args name="batch_size"/>
+      </kernels>
+      <kernels name="krnl_cnn_layer3" sourceFile="src/krnl_cnn_layer3.cpp">
+        <args name="input" master="true"/>
+        <args name="weights" master="true"/>
+        <args name="output" master="true"/>
+        <args name="batch_size"/>
+      </kernels>
+      <kernels name="krnl_cnn_layer4" sourceFile="src/krnl_cnn_layer4.cpp">
         <args name="input" master="true"/>
         <args name="weights" master="true"/>
         <args name="output" master="true"/>

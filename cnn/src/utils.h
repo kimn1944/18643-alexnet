@@ -52,6 +52,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <sys/time.h>
 
 #define OCL_CHECK(error, call)                                                                      \
     call;                                                                                           \
@@ -91,6 +92,30 @@ typedef struct krnl_object {
     std::string name;
     unsigned index;
 } krnl_object;
+
+//TODO: modify when we have less kernels
+typedef struct times {
+    struct timeval start_time;
+    struct timeval end_time;
+    struct timeval layer0_start;
+    struct timeval layer1_start;
+    struct timeval layer2_start;
+    struct timeval layer3_start;
+    struct timeval layer4_start;
+    struct timeval layer0_end;
+    struct timeval layer1_end;
+    struct timeval layer2_end;
+    struct timeval layer3_end;
+    struct timeval layer4_end;
+    struct timeval layer01_recon_start;
+    struct timeval layer12_recon_start;
+    struct timeval layer23_recon_start;
+    struct timeval layer34_recon_start;
+    struct timeval layer01_recon_end;
+    struct timeval layer12_recon_end;
+    struct timeval layer23_recon_end;
+    struct timeval layer34_recon_end;
+} times_t;
 
 #ifdef __VITIS_CL__
 // Find and initialize the device, context and command queues

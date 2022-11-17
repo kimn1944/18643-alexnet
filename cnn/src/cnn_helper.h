@@ -44,7 +44,7 @@
 
 #ifdef __VITIS_CL__
 // Set kernel arguments and execute it
-void cnn_run_kernel(cl_object &cl_obj, krnl_object *krnl_obj);
+void cnn_run_kernel(cl_object &cl_obj, krnl_object *krnl_obj, times_t *times);
 #endif
 
 // Verification functions

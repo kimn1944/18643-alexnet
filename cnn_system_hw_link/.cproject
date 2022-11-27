@@ -37,7 +37,7 @@
                                 								
                                 <option id="com.xilinx.accelerated.toolchain.hw_linker.other_flags.1648759306" name="Other flags" superClass="com.xilinx.accelerated.toolchain.hw_linker.other_flags" useByScannerDiscovery="false" valueType="stringList">
                                     									
-                                    <listOptionValue builtIn="false" value="--config /home/fpga/workspace/alexnet/krnl_reconnect.cfg"/>
+                                    <listOptionValue builtIn="false" value="--config /afs/ece.cmu.edu/class/ece643/f2022/lab3/krnl_reconnect.cfg"/>
                                     								
                                 </option>
                                 							

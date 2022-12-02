@@ -70,6 +70,10 @@ void krnl_cnn_layer0(const cnndata_t* input, const cnndata_t* weights,
   cnndata_t BufO[TM_0][TR_0][TC_0];
   cnndata_t BufW[TM_0][TN_0][K_WTS][K_WTS];
 
+#pragma HLS ARRAY_PARTITION variable=BufO type=complete dim=1
+#pragma HLS ARRAY_PARTITION variable=BufW type=complete dim=1
+#pragma HLS ARRAY_PARTITION variable=BufW type=complete dim=2
+#pragma HLS ARRAY_PARTITION variable=BufI type=complete dim=1
 
   Batch: for(iter = 0; iter < batch_size; iter++) {        // Batch Loop
     R: for(row = 0; row < R_OFM(0); row += TR_0) {     // Tiled Row Loop
@@ -223,15 +227,25 @@ void cnn0_blocked_kernel(cnndata_t BufI[TN_0][TR_0*S_WTS+K_WTS-S_WTS][TC_0*S_WTS
                         cnndata_t BufO[TM_0][TR_0][TC_0],
                         cnndata_t BufW[TM_0][TN_0][K_WTS][K_WTS]) {
 
+#pragma HLS INLINE
   index_t to_b, ti_b, row_b, col_b;
-  index_t i, j;
 
+  index_t i, j;
   Krow: for(i = 0; i < K_WTS; i++) {
+#pragma HLS pipeline off
+//#pragma HLS loop_flatten off
     Kcol: for(j = 0; j < K_WTS; j++) {
+#pragma HLS pipeline off
+//#pragma HLS loop_flatten off
       Row: for(row_b = 0; row_b < TR_0; row_b++) {
+#pragma HLS pipeline off
+//#pragma HLS loop_flatten off
     	Col: for(col_b = 0; col_b < TC_0; col_b++) {
+#pragma HLS pipeline
     	  To: for(to_b = 0; to_b < TM_0; to_b++) {
+#pragma HLS UNROLL
     		Ti: for(ti_b = 0; ti_b < TN_0; ti_b++) {
+#pragma HLS UNROLL
                 BufO[to_b][row_b][col_b] += BufW[to_b][ti_b][i][j] *
                   BufI[ti_b][S_WTS*row_b+i][S_WTS*col_b+j];
             }

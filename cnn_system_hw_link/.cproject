@@ -133,7 +133,7 @@
                                 								
                                 <option id="com.xilinx.accelerated.toolchain.hw_linker.other_flags.806983666" name="Other flags" superClass="com.xilinx.accelerated.toolchain.hw_linker.other_flags" useByScannerDiscovery="false" valueType="stringList">
                                     									
-                                    <listOptionValue builtIn="false" value="--config /home/fpga/workspace/alexnet/krnl_reconnect.cfg"/>
+                                    <listOptionValue builtIn="false" value="--config /scratch/643_vitis_sbernal/18643-alexnet/krnl_reconnect.cfg"/>
                                     								
                                 </option>
                                 							

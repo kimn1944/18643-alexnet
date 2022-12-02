@@ -60,6 +60,160 @@ void cnn3_blocked_kernel(cnndata_t BufI[TN_3][TR_3*S_WTS+K_WTS-S_WTS][TC_3*S_WTS
 #ifdef __VITIS_CL__
 extern "C" {
 #endif
+
+#ifdef layer3_BufI_optimization
+
+
+void krnl_cnn_layer3(const cnndata_t* input, const cnndata_t* weights,
+        cnndata_t* output, uint64_t batch_size) {
+
+  index_t iter;
+  index_t row, col, to, ti;
+
+  cnndata_t BufI[TN_3][TR_3*S_WTS+K_WTS-S_WTS][TC_3*S_WTS+K_WTS-S_WTS];
+  cnndata_t BufO[TM_3][TR_3][TC_3];
+  cnndata_t BufW[TM_3][TN_3][K_WTS][K_WTS];
+
+#pragma HLS ARRAY_PARTITION variable=BufO type=complete dim=1 //factor=16
+#pragma HLS ARRAY_PARTITION variable=BufW type=complete dim=1 //factor=16
+#pragma HLS ARRAY_PARTITION variable=BufW type=complete dim=2 //factor=4
+#pragma HLS ARRAY_PARTITION variable=BufI type=complete dim=1 //factor=4
+
+  Batch: for(iter = 0; iter < batch_size; iter++) {        // Batch Loop
+    R: for(row = 0; row < R_OFM(3); row += TR_3) {     // Tiled Row Loop
+      C: for(col = 0; col < C_OFM(3); col += TC_3) {   // Tiled Column Loop
+    	N: for(ti = 0; ti < N_IFM(3); ti += TN_3) {
+          index_t trr, tcc, too, tii;
+
+          // Load active input feature map into local buffer
+		  {
+			// Indices internal to the block: count from 0
+			index_t irr, icc, iii;
+
+			// Incremented temporary indices for input row and col
+			index_t xrr, xcc;
+
+			// Loop bounds
+			index_t tii_max, xrr_max, xcc_max;
+			tii_max = MIN(ti + TN_3, N_IFM(3));
+			xrr_max = MIN(row + TR_3, R_OFM(3)) * S_WTS + K_WTS - S_WTS;
+			xcc_max = MIN(col + TC_3, C_OFM(3)) * S_WTS + K_WTS - S_WTS;
+
+			BufI_load: for(xrr = row * S_WTS, irr = 0; xrr < xrr_max; xrr++, irr++) {
+				for(xcc = col * S_WTS, icc = 0; xcc < xcc_max; xcc++, icc++) {
+				  for(tii = ti, iii = 0; tii < tii_max; tii++, iii++) {
+				  BufI[iii][irr][icc] = ARRAYi_3(input, iter, tii, xrr, xcc,
+					batch_size, N_IFM(3), R_IFM(3), C_IFM(3));
+				}
+			  }
+			}
+		  }
+
+
+          M: for(to = 0; to < M_OFM(3); to += TM_3) {
+
+            // Load active weights into local buffer
+            {
+              // Indices internal to the block: count from 0
+              index_t ioo, iii, irr, icc;
+
+              // Loop bounds
+              index_t too_max, tii_max;
+              too_max = MIN(to + TM_3, M_OFM(3));
+              tii_max = MIN(ti + TN_3, N_IFM(3));
+
+              BufW_load:for(irr = 0; irr < K_WTS; irr++) {
+                    for(icc = 0; icc < K_WTS; icc++) {
+                    	for(too = to, ioo = 0; too < too_max; too++, ioo++) {
+                    		for(tii = ti, iii = 0; tii < tii_max; tii++, iii++) {
+                      BufW[ioo][iii][irr][icc] = ARRAYw_3(weights, too, tii, irr,
+                        icc, M_OFM(3), N_IFM(3), K_WTS, K_WTS);
+                    }
+                  }
+                }
+              }
+
+                /* Write 0s into over-run regions at the end;
+                 * This way convolve_kernel() accumulates correctly
+                 * without needing a special case
+                 */
+                if (iii < TN_3) {
+                  for(; iii < TN_3; iii++) {
+                    for(irr = 0; irr < K_WTS; irr++) {
+                      for(icc = 0; icc < K_WTS; icc++) {
+                        BufW[ioo][iii][irr][icc] = 0;
+                      }
+                    }
+                  }
+                }
+
+            }
+
+
+
+          {
+			  // Indices internal to the block: count from 0
+			  index_t ioo, icc, irr;
+
+			  // Loop bounds
+			  index_t too_max, tcc_max, trr_max;
+			  too_max = MIN(to + TM_3, M_OFM(3));
+			  tcc_max = MIN(col + TC_3, C_OFM(3));
+			  trr_max = MIN(row + TR_3, R_OFM(3));
+
+			  BufO_read: for(trr = row, irr = 0; trr < trr_max; trr++, irr++) {
+				  for(tcc = col, icc = 0; tcc < tcc_max; tcc++, icc++) {
+					for(too = to, ioo = 0; too < too_max; too++, ioo++) {
+						if (ti == 0) {
+							BufO[ioo][irr][icc] = 0;
+						}
+						else {
+							BufO[ioo][irr][icc] = ARRAYo_3(output, iter, too, trr, tcc, batch_size, M_OFM(3), R_OFM(3), C_OFM(3));
+						}
+					}
+
+				  }
+				}
+			 }
+
+
+          // Call the blocked cnn kernel
+          cnn3_blocked_kernel(BufI, BufO, BufW);
+
+
+          // Unload finished active intermedaite output feature map from local
+          // to full buffer
+          {
+            // Indices internal to the block: count from 0
+            index_t ioo, icc, irr;
+
+            // Loop bounds
+            index_t too_max, tcc_max, trr_max;
+            too_max = MIN(to + TM_3, M_OFM(3));
+            tcc_max = MIN(col + TC_3, C_OFM(3));
+            trr_max = MIN(row + TR_3, R_OFM(3));
+
+            BufO_write: for(trr = row, irr = 0; trr < trr_max; trr++, irr++) {
+                for(tcc = col, icc = 0; tcc < tcc_max; tcc++, icc++) {
+                	for(too = to, ioo = 0; too < too_max; too++, ioo++) {
+                  ARRAYo_3(output, iter, too, trr, tcc, batch_size, M_OFM(3),
+                    R_OFM(3), C_OFM(3)) = BufO[ioo][irr][icc];
+                   }
+                 }
+               }
+             }
+
+          }
+        }
+      }
+    }
+  }
+}
+
+
+#else
+
+
 void krnl_cnn_layer3(const cnndata_t* input, const cnndata_t* weights,
         cnndata_t* output, uint64_t batch_size) {
 
@@ -192,6 +346,9 @@ void krnl_cnn_layer3(const cnndata_t* input, const cnndata_t* weights,
     }
   }
 }
+
+
+#endif
 
 #ifdef __VITIS_CL__ // for lab 3
 } // extern

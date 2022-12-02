@@ -73,6 +73,49 @@ int main(int argc, char* argv[]) {
         "binary_container_4.xclbin"
     };
 #endif
+
+std::cout << "=====\n======\n" << std::endl;
+
+#ifdef layer0_BufI_optimization
+std::cout << "===== Optimizing for BufI in Layer "
+			  << 0 << " ======" << std::endl;
+#else
+std::cout << "===== Optimizing for BufO in Layer "
+				  << 0 << " ======" << std::endl;
+#endif
+
+#ifdef layer1_BufI_optimization
+std::cout << "===== Optimizing for BufI in Layer "
+			  << 1 << " ======" << std::endl;
+#else
+std::cout << "===== Optimizing for BufO in Layer "
+				  << 1 << " ======" << std::endl;
+#endif
+
+#ifdef layer2_BufI_optimization
+std::cout << "===== Optimizing for BufI in Layer "
+			  << 2 << " ======" << std::endl;
+#else
+std::cout << "===== Optimizing for BufO in Layer "
+				  << 2 << " ======" << std::endl;
+#endif
+
+#ifdef layer3_BufI_optimization
+std::cout << "===== Optimizing for BufI in Layer "
+			  << 3 << " ======" << std::endl;
+#else
+std::cout << "===== Optimizing for BufO in Layer "
+				  << 3 << " ======" << std::endl;
+#endif
+
+#ifdef layer4_BufI_optimization
+std::cout << "===== Optimizing for BufI in Layer "
+			  << 4 << " ======\n" << std::endl;
+#else
+std::cout << "===== Optimizing for BufO in Layer "
+				  << 4 << " ======\n" << std::endl;
+#endif
+
     print_params(0);
     print_params(1);
     print_params(2);

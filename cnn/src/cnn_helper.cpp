@@ -199,6 +199,7 @@ bool cnn_check(cnndata_t *ptr_input, cnndata_t *ptr_weight, cnndata_t *ptr_outpu
 }
 
 void print_params(uint64_t layer) {
+
     std::cout << "===== Printing the CNN parameters Layer "
               << layer << " ======" << std::endl;
 

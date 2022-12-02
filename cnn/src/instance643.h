@@ -58,6 +58,12 @@ static inline bool nearlyEqual(cnndata_t a, cnndata_t b) { return a == b; }
 
 #define BATCH_SIZE 1
 
+#define layer0_BufI_optimization
+#define layer1_BufI_optimization
+#define layer2_BufI_optimization
+#define layer3_BufI_optimization
+#define layer4_BufI_optimization
+
 //
 // Layer 4
 //

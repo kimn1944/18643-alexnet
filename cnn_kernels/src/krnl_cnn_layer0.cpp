@@ -60,6 +60,9 @@ void cnn0_blocked_kernel(cnndata_t BufI[TN_0][TR_0*S_WTS+K_WTS-S_WTS][TC_0*S_WTS
 #ifdef __VITIS_CL__
 extern "C" {
 #endif
+
+#ifdef layer0_BufI_optimization
+
 void krnl_cnn_layer0(const cnndata_t* input, const cnndata_t* weights,
         cnndata_t* output, uint64_t batch_size) {
 
@@ -107,8 +110,6 @@ void krnl_cnn_layer0(const cnndata_t* input, const cnndata_t* weights,
 
 
           M: for(to = 0; to < M_OFM(0); to += TM_0) {
-
-
 
         	 //index into DRAM 2D array based on tile offsets
         	 //index_t trr, tcc, too;
@@ -208,9 +209,7 @@ void krnl_cnn_layer0(const cnndata_t* input, const cnndata_t* weights,
 					}
 				  }
 				}
-			}
-
-
+			  }
 
           }
         }
@@ -218,6 +217,144 @@ void krnl_cnn_layer0(const cnndata_t* input, const cnndata_t* weights,
     }
   }
 }
+
+#else //optimize for BufO
+
+void krnl_cnn_layer0(const cnndata_t* input, const cnndata_t* weights,
+        cnndata_t* output, uint64_t batch_size) {
+
+  index_t iter;
+  index_t row, col, to, ti;
+
+  cnndata_t BufI[TN_0][TR_0*S_WTS+K_WTS-S_WTS][TC_0*S_WTS+K_WTS-S_WTS];
+  cnndata_t BufO[TM_0][TR_0][TC_0];
+  cnndata_t BufW[TM_0][TN_0][K_WTS][K_WTS];
+
+#pragma HLS ARRAY_PARTITION variable=BufO type=complete dim=1 //factor=16
+#pragma HLS ARRAY_PARTITION variable=BufW type=complete dim=1 //factor=16
+#pragma HLS ARRAY_PARTITION variable=BufW type=complete dim=2 //factor=4
+#pragma HLS ARRAY_PARTITION variable=BufI type=complete dim=1 //factor=4
+
+  Batch: for(iter = 0; iter < batch_size; iter++) {        // Batch Loop
+    R: for(row = 0; row < R_OFM(0); row += TR_0) {     // Tiled Row Loop
+      C: for(col = 0; col < C_OFM(0); col += TC_0) {   // Tiled Column Loop
+        M: for(to = 0; to < M_OFM(0); to += TM_0) {    // Tiled Output Channel Loop
+          // Temporary versions of incremented indices;
+          // Same usage as in ZhangIsfpga_2()
+          index_t trr, tcc, too, tii;
+
+
+          // Only need to zero BufO in this loop ordering
+          {
+            // Indices internal to the block: count from 0
+            index_t ioo, icc, irr;
+
+            BufO_zero: for(irr = 0; irr < TR_0; irr++) {
+                for(icc = 0; icc < TC_0; icc++) {
+                	for(ioo = 0; ioo < TM_0; ioo++) {
+#pragma HLS UNROLL
+                  BufO[ioo][irr][icc] = 0;
+                }
+              }
+            }
+          }
+
+          // Tiled Input Channel Loop
+          N: for(ti = 0; ti < N_IFM(0); ti += TN_0) {
+
+            // Load active input feature map into local buffer
+            {
+              // Indices internal to the block: count from 0
+              index_t irr, icc, iii;
+
+              // Incremented temporary indices for input row and col
+              index_t xrr, xcc;
+
+              // Loop bounds
+              index_t tii_max, xrr_max, xcc_max;
+              tii_max = MIN(ti + TN_0, N_IFM(0));
+              xrr_max = MIN(row + TR_0, R_OFM(0)) * S_WTS + K_WTS - S_WTS;
+              xcc_max = MIN(col + TC_0, C_OFM(0)) * S_WTS + K_WTS - S_WTS;
+
+              BufI_load: for(xrr = row * S_WTS, irr = 0; xrr < xrr_max; xrr++, irr++) {
+                  for(xcc = col * S_WTS, icc = 0; xcc < xcc_max; xcc++, icc++) {
+                	  for(tii = ti, iii = 0; tii < tii_max; tii++, iii++) {
+                    BufI[iii][irr][icc] = ARRAYi_0(input, iter, tii, xrr, xcc,
+                      batch_size, N_IFM(0), R_IFM(0), C_IFM(0));
+                  }
+                }
+              }
+            }
+
+            // Load active weights into local buffer
+            {
+              // Indices internal to the block: count from 0
+              index_t ioo, iii, irr, icc;
+
+              // Loop bounds
+              index_t too_max, tii_max;
+              too_max = MIN(to + TM_0, M_OFM(0));
+              tii_max = MIN(ti + TN_0, N_IFM(0));
+
+              BufW_load:for(irr = 0; irr < K_WTS; irr++) {
+                    for(icc = 0; icc < K_WTS; icc++) {
+                    	for(too = to, ioo = 0; too < too_max; too++, ioo++) {
+                    		for(tii = ti, iii = 0; tii < tii_max; tii++, iii++) {
+                      BufW[ioo][iii][irr][icc] = ARRAYw_0(weights, too, tii, irr,
+                        icc, M_OFM(0), N_IFM(0), K_WTS, K_WTS);
+                    }
+                  }
+                }
+
+                /* Write 0s into over-run regions at the end;
+                 * This way convolve_kernel() accumulates correctly
+                 * without needing a special case
+                 */
+                if (iii < TN_0) {
+                  for(; iii < TN_0; iii++) {
+                    for(irr = 0; irr < K_WTS; irr++) {
+                      for(icc = 0; icc < K_WTS; icc++) {
+                        BufW[ioo][iii][irr][icc] = 0;
+                      }
+                    }
+                  }
+                }
+              }
+            }
+
+            // Call the blocked cnn kernel
+            cnn0_blocked_kernel(BufI, BufO, BufW);
+          }
+
+          // Unload finished active intermedaite output feature map from local
+          // to full buffer
+          {
+            // Indices internal to the block: count from 0
+            index_t ioo, icc, irr;
+
+            // Loop bounds
+            index_t too_max, tcc_max, trr_max;
+            too_max = MIN(to + TM_0, M_OFM(0));
+            tcc_max = MIN(col + TC_0, C_OFM(0));
+            trr_max = MIN(row + TR_0, R_OFM(0));
+
+            BufO_write: for(trr = row, irr = 0; trr < trr_max; trr++, irr++) {
+                for(tcc = col, icc = 0; tcc < tcc_max; tcc++, icc++) {
+                	for(too = to, ioo = 0; too < too_max; too++, ioo++) {
+                  ARRAYo_0(output, iter, too, trr, tcc, batch_size, M_OFM(0),
+                    R_OFM(0), C_OFM(0)) = BufO[ioo][irr][icc];
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+#endif
 
 #ifdef __VITIS_CL__ // for lab 3
 } // extern

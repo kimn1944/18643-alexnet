@@ -85,28 +85,34 @@ void krnl_cnn_layer1(const cnndata_t* input, const cnndata_t* weights,
           index_t trr, tcc, too, tii;
 
           // Load active input feature map into local buffer
-		  {
-			// Indices internal to the block: count from 0
-			index_t irr, icc, iii;
+			{
+				// Indices internal to the block: count from 0
+				index_t irr, icc, iii;
 
-			// Incremented temporary indices for input row and col
-			index_t xrr, xcc;
+				// Incremented temporary indices for input row and col
+				index_t xrr, xcc;
 
-			// Loop bounds
-			index_t tii_max, xrr_max, xcc_max;
-			tii_max = MIN(ti + TN_1, N_IFM(1));
-			xrr_max = MIN(row + TR_1, R_OFM(1)) * S_WTS + K_WTS - S_WTS;
-			xcc_max = MIN(col + TC_1, C_OFM(1)) * S_WTS + K_WTS - S_WTS;
+				// Loop bounds
+				index_t tii_max, xrr_max, xcc_max;
+				tii_max = MIN(ti + TN_1, N_IFM(1));
+				xrr_max = MIN(row + TR_1, R_OFM(1)) * S_WTS + K_WTS - S_WTS;
+				xcc_max = MIN(col + TC_1, C_OFM(1)) * S_WTS + K_WTS - S_WTS;
 
-			BufI_load: for(xrr = row * S_WTS, irr = 0; xrr < xrr_max; xrr++, irr++) {
-				for(xcc = col * S_WTS, icc = 0; xcc < xcc_max; xcc++, icc++) {
-				  for(tii = ti, iii = 0; tii < tii_max; tii++, iii++) {
-				  BufI[iii][irr][icc] = ARRAYi_1(input, iter, tii, xrr, xcc,
-					batch_size, N_IFM(1), R_IFM(1), C_IFM(1));
+				BufI_load: for(xrr = row * S_WTS, irr = 0; xrr < xrr_max; xrr++, irr++) {
+					for(xcc = col * S_WTS, icc = 0; xcc < xcc_max; xcc++, icc++) {
+
+						for(tii = ti, iii = 0; tii < tii_max; tii++, iii++) {
+							BufI[iii][irr][icc] = ARRAYi_1(input, iter, tii, xrr, xcc, batch_size, N_IFM(1), R_IFM(1), C_IFM(1));
+						}
+
+						if (iii < TN_1) {
+							for (; iii < TN_1; iii++) {
+								BufI[iii][irr][icc] = 0;
+							}
+						}
+					}
 				}
-			  }
 			}
-		  }
 
 
           // Tiled Input Channel Loop
@@ -134,20 +140,6 @@ void krnl_cnn_layer1(const cnndata_t* input, const cnndata_t* weights,
                   }
                 }
               }
-
-                /* Write 0s into over-run regions at the end;
-                 * This way convolve_kernel() accumulates correctly
-                 * without needing a special case
-                 */
-                if (iii < TN_1) {
-                  for(; iii < TN_1; iii++) {
-                    for(irr = 0; irr < K_WTS; irr++) {
-                      for(icc = 0; icc < K_WTS; icc++) {
-                        BufW[ioo][iii][irr][icc] = 0;
-                      }
-                    }
-                  }
-                }
               }
 
 

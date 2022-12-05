@@ -57,11 +57,11 @@ typedef uint32_t index_t;
 //////////////////////////////////////////////////////
 // Layer 1 - Hardcoded Implementation if using DFX
 //////////////////////////////////////////////////////
-#define TR_1 (7) // output row
-#define TC_1 (9) // output column
-#define TM_1 (11) // output depth
-#define TN_1 (13) // input depth
-// #define layer1_BufI_optimization
+#define TR_1 (4) // output row
+#define TC_1 (4) // output column
+#define TM_1 (4) // output depth
+#define TN_1 (4) // input depth
+#define layer1_BufI_optimization
 
 // Input 1 must use same macro as Output 0 so that the kernel
 // can communicate from layer 0 to layer 1

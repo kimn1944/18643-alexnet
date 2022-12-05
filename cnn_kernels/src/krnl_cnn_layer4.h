@@ -63,6 +63,7 @@ typedef uint32_t index_t;
 #define TN_4 (86) // input depth
 #define layer4_BufI_optimization
 
+
 // Input 1 must use same macro as Output 0 so that the kernel
 // can communicate from layer 0 to layer 1
 //#define ARRAYi_4(ptr,iB,iN,iR,iC,dB,dN,dR,dC)               \

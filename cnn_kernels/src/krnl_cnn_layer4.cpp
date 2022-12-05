@@ -274,40 +274,32 @@ void krnl_cnn_layer4(const cnndata_t* input, const cnndata_t* weights,
 			}
 
 			// Load active weights into local buffer
-			{
-			  // Indices internal to the block: count from 0
-			  index_t ioo, iii, irr, icc;
+            {
+				// Indices internal to the block: count from 0
+				index_t ioo, iii, irr, icc;
 
-			  // Loop bounds
-			  index_t too_max, tii_max;
-			  too_max = MIN(to + TM_4, M_OFM(4));
-			  tii_max = MIN(ti + TN_4, N_IFM(4));
+				// Loop bounds
+				index_t too_max, tii_max;
+				too_max = MIN(to + TM_4, M_OFM(4));
+				tii_max = MIN(ti + TN_4, N_IFM(4));
 
-			  BufW_load:for(irr = 0; irr < K_WTS; irr++) {
+				BufW_load:for(irr = 0; irr < K_WTS; irr++) {
 					for(icc = 0; icc < K_WTS; icc++) {
 						for(too = to, ioo = 0; too < too_max; too++, ioo++) {
-							for(tii = ti, iii = 0; tii < tii_max; tii++, iii++) {
-					  BufW[ioo][iii][irr][icc] = ARRAYw_4(weights, too, tii, irr,
-						icc, M_OFM(4), N_IFM(4), K_WTS, K_WTS);
-					}
-				  }
-				}
 
-				/* Write 0s into over-run regions at the end;
-				 * This way convolve_kernel() accumulates correctly
-				 * without needing a special case
-				 */
-				if (iii < TN_4) {
-				  for(; iii < TN_4; iii++) {
-					for(irr = 0; irr < K_WTS; irr++) {
-					  for(icc = 0; icc < K_WTS; icc++) {
-						BufW[ioo][iii][irr][icc] = 0;
-					  }
+							for(tii = ti, iii = 0; tii < tii_max; tii++, iii++) {
+								BufW[ioo][iii][irr][icc] = ARRAYw_4(weights, too, tii, irr, icc, M_OFM(4), N_IFM(4), K_WTS, K_WTS);
+							}
+
+							if (iii < TN_4) {
+								for(; iii < TN_4; iii++) {
+									BufW[ioo][iii][irr][icc] = 0;
+								}
+							}
+						}
 					}
-				  }
 				}
-			  }
-			}
+            }
 
 			// Call the blocked cnn kernel
 			cnn4_blocked_kernel(BufI, BufO, BufW);

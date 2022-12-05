@@ -61,6 +61,7 @@ typedef uint32_t index_t;
 #define TC_1 (4) // output column
 #define TM_1 (4) // output depth
 #define TN_1 (4) // input depth
+#define layer1_BufI_optimization
 
 // Input 1 must use same macro as Output 0 so that the kernel
 // can communicate from layer 0 to layer 1

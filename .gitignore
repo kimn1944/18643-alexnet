@@ -22,4 +22,4 @@ cnn_kernels/cnn_kernels.prj
 cnn_system/cnn_system.sprj
 cnn_system_hw_link/.cproject
 cnn_system_hw_link/cnn_system_hw_link.prj
-
+cnn/.settings/language.settings.xml

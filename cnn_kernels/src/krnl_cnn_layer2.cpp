@@ -85,28 +85,34 @@ void krnl_cnn_layer2(const cnndata_t* input, const cnndata_t* weights,
           index_t trr, tcc, too, tii;
 
           // Load active input feature map into local buffer
-		  {
-			// Indices internal to the block: count from 0
-			index_t irr, icc, iii;
+			{
+				// Indices internal to the block: count from 0
+				index_t irr, icc, iii;
 
-			// Incremented temporary indices for input row and col
-			index_t xrr, xcc;
+				// Incremented temporary indices for input row and col
+				index_t xrr, xcc;
 
-			// Loop bounds
-			index_t tii_max, xrr_max, xcc_max;
-			tii_max = MIN(ti + TN_2, N_IFM(2));
-			xrr_max = MIN(row + TR_2, R_OFM(2)) * S_WTS + K_WTS - S_WTS;
-			xcc_max = MIN(col + TC_2, C_OFM(2)) * S_WTS + K_WTS - S_WTS;
+				// Loop bounds
+				index_t tii_max, xrr_max, xcc_max;
+				tii_max = MIN(ti + TN_2, N_IFM(2));
+				xrr_max = MIN(row + TR_2, R_OFM(2)) * S_WTS + K_WTS - S_WTS;
+				xcc_max = MIN(col + TC_2, C_OFM(2)) * S_WTS + K_WTS - S_WTS;
 
-			BufI_load: for(xrr = row * S_WTS, irr = 0; xrr < xrr_max; xrr++, irr++) {
-				for(xcc = col * S_WTS, icc = 0; xcc < xcc_max; xcc++, icc++) {
-				  for(tii = ti, iii = 0; tii < tii_max; tii++, iii++) {
-				  BufI[iii][irr][icc] = ARRAYi_2(input, iter, tii, xrr, xcc,
-					batch_size, N_IFM(2), R_IFM(2), C_IFM(2));
+				BufI_load: for(xrr = row * S_WTS, irr = 0; xrr < xrr_max; xrr++, irr++) {
+					for(xcc = col * S_WTS, icc = 0; xcc < xcc_max; xcc++, icc++) {
+
+						for(tii = ti, iii = 0; tii < tii_max; tii++, iii++) {
+							BufI[iii][irr][icc] = ARRAYi_2(input, iter, tii, xrr, xcc, batch_size, N_IFM(2), R_IFM(2), C_IFM(2));
+						}
+
+						if (iii < TN_2) {
+							for (; iii < TN_2; iii++) {
+								BufI[iii][irr][icc] = 0;
+							}
+						}
+					}
 				}
-			  }
 			}
-		  }
 
 
           M: for(to = 0; to < M_OFM(2); to += TM_2) {
@@ -131,21 +137,6 @@ void krnl_cnn_layer2(const cnndata_t* input, const cnndata_t* weights,
                     }
                   }
                 }
-
-                /* Write 0s into over-run regions at the end;
-                 * This way convolve_kernel() accumulates correctly
-                 * without needing a special case
-                 */
-                if (iii < TN_2) {
-                  for(; iii < TN_2; iii++) {
-                    for(irr = 0; irr < K_WTS; irr++) {
-                      for(icc = 0; icc < K_WTS; icc++) {
-                        BufW[ioo][iii][irr][icc] = 0;
-                      }
-                    }
-                  }
-                }
-
             }
 
             {
@@ -275,38 +266,30 @@ void krnl_cnn_layer2(const cnndata_t* input, const cnndata_t* weights,
 
             // Load active weights into local buffer
             {
-              // Indices internal to the block: count from 0
-              index_t ioo, iii, irr, icc;
+				// Indices internal to the block: count from 0
+				index_t ioo, iii, irr, icc;
 
-              // Loop bounds
-              index_t too_max, tii_max;
-              too_max = MIN(to + TM_2, M_OFM(2));
-              tii_max = MIN(ti + TN_2, N_IFM(2));
+				// Loop bounds
+				index_t too_max, tii_max;
+				too_max = MIN(to + TM_2, M_OFM(2));
+				tii_max = MIN(ti + TN_2, N_IFM(2));
 
-              BufW_load:for(irr = 0; irr < K_WTS; irr++) {
-                    for(icc = 0; icc < K_WTS; icc++) {
-                    	for(too = to, ioo = 0; too < too_max; too++, ioo++) {
-                    		for(tii = ti, iii = 0; tii < tii_max; tii++, iii++) {
-                      BufW[ioo][iii][irr][icc] = ARRAYw_2(weights, too, tii, irr,
-                        icc, M_OFM(2), N_IFM(2), K_WTS, K_WTS);
-                    }
-                  }
-                }
+				BufW_load:for(irr = 0; irr < K_WTS; irr++) {
+					for(icc = 0; icc < K_WTS; icc++) {
+						for(too = to, ioo = 0; too < too_max; too++, ioo++) {
 
-                /* Write 0s into over-run regions at the end;
-                 * This way convolve_kernel() accumulates correctly
-                 * without needing a special case
-                 */
-                if (iii < TN_2) {
-                  for(; iii < TN_2; iii++) {
-                    for(irr = 0; irr < K_WTS; irr++) {
-                      for(icc = 0; icc < K_WTS; icc++) {
-                        BufW[ioo][iii][irr][icc] = 0;
-                      }
-                    }
-                  }
-                }
-              }
+							for(tii = ti, iii = 0; tii < tii_max; tii++, iii++) {
+								BufW[ioo][iii][irr][icc] = ARRAYw_2(weights, too, tii, irr, icc, M_OFM(2), N_IFM(2), K_WTS, K_WTS);
+							}
+
+							if (iii < TN_2) {
+								for(; iii < TN_2; iii++) {
+									BufW[ioo][iii][irr][icc] = 0;
+								}
+							}
+						}
+					}
+				}
             }
 
 

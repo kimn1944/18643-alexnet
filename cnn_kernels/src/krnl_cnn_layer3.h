@@ -59,8 +59,8 @@ typedef uint32_t index_t;
 //////////////////////////////////////////////////////
 #define TR_3 (18) // output row
 #define TC_3 (18) // output column
-#define TM_3 (1) // output depth
-#define TN_3 (86) // input depth
+#define TM_3 (3) // output depth
+#define TN_3 (32) // input depth
 #define layer3_BufI_optimization
 
 // Input 1 must use same macro as Output 0 so that the kernel

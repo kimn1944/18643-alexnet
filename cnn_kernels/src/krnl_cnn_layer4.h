@@ -59,8 +59,8 @@ typedef uint32_t index_t;
 //////////////////////////////////////////////////////
 #define TR_4 (8) // output row
 #define TC_4 (8) // output column
-#define TM_4 (1) // output depth
-#define TN_4 (86) // input depth
+#define TM_4 (3) // output depth
+#define TN_4 (32) // input depth
 #define layer4_BufI_optimization
 
 

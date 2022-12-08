@@ -94,9 +94,13 @@ void krnl_cnn_layer2(const cnndata_t* input, const cnndata_t* weights,
 
 				// Loop bounds
 				index_t tii_max, xrr_max, xcc_max;
-				tii_max = MIN(ti + TN_2, N_IFM(2));
+				tii_max = ti + TN_2;
 				xrr_max = MIN(row + TR_2, R_OFM(2)) * S_WTS + K_WTS - S_WTS;
 				xcc_max = MIN(col + TC_2, C_OFM(2)) * S_WTS + K_WTS - S_WTS;
+
+/*				tii_max = MIN(ti + TN_2, N_IFM(2));
+				xrr_max = MIN(row + TR_2, R_OFM(2)) * S_WTS + K_WTS - S_WTS;
+				xcc_max = MIN(col + TC_2, C_OFM(2)) * S_WTS + K_WTS - S_WTS;*/
 
 				BufI_load: for(xrr = row * S_WTS, irr = 0; xrr < xrr_max; xrr++, irr++) {
 					for(xcc = col * S_WTS, icc = 0; xcc < xcc_max; xcc++, icc++) {
@@ -105,11 +109,11 @@ void krnl_cnn_layer2(const cnndata_t* input, const cnndata_t* weights,
 							BufI[iii][irr][icc] = ARRAYi_2(input, iter, tii, xrr, xcc, batch_size, N_IFM(2), R_IFM(2), C_IFM(2));
 						}
 
-						if (iii < TN_2) {
+/*						if (iii < TN_2) {
 							for (; iii < TN_2; iii++) {
 								BufI[iii][irr][icc] = 0;
 							}
-						}
+						}*/
 					}
 				}
 			}
@@ -125,7 +129,10 @@ void krnl_cnn_layer2(const cnndata_t* input, const cnndata_t* weights,
               // Loop bounds
               index_t too_max, tii_max;
               too_max = MIN(to + TM_2, M_OFM(2));
-              tii_max = MIN(ti + TN_2, N_IFM(2));
+              tii_max = ti + TN_2;
+
+/*              too_max = MIN(to + TM_2, M_OFM(2));
+              tii_max = MIN(ti + TN_2, N_IFM(2));*/
 
               BufW_load:for(irr = 0; irr < K_WTS; irr++) {
                     for(icc = 0; icc < K_WTS; icc++) {
@@ -149,18 +156,28 @@ void krnl_cnn_layer2(const cnndata_t* input, const cnndata_t* weights,
 			tcc_max = MIN(col + TC_2, C_OFM(2));
 			trr_max = MIN(row + TR_2, R_OFM(2));
 
-			BufO_read: for(trr = row, irr = 0; trr < trr_max; trr++, irr++) {
-				for(tcc = col, icc = 0; tcc < tcc_max; tcc++, icc++) {
-					for(too = to, ioo = 0; too < too_max; too++, ioo++) {
-						if (ti == 0) {
+/*			too_max = MIN(to + TM_2, M_OFM(2));
+			tcc_max = MIN(col + TC_2, C_OFM(2));
+			trr_max = MIN(row + TR_2, R_OFM(2));*/
+
+			if (ti == 0) {
+				BufO_zero: for(trr = row, irr = 0; trr < trr_max; trr++, irr++) {
+					for(tcc = col, icc = 0; tcc < tcc_max; tcc++, icc++) {
+						for(too = to, ioo = 0; too < too_max; too++, ioo++) {
 							BufO[ioo][irr][icc] = 0;
 						}
-						else {
+					}
+				  }
+			} else {
+				BufO_read: for(trr = row, irr = 0; trr < trr_max; trr++, irr++) {
+					for(tcc = col, icc = 0; tcc < tcc_max; tcc++, icc++) {
+						for(too = to, ioo = 0; too < too_max; too++, ioo++) {
 							BufO[ioo][irr][icc] = ARRAYo_2(output, iter, too, trr, tcc, batch_size, M_OFM(2), R_OFM(2), C_OFM(2));
 						}
 					}
-				}
-			  }
+				  }
+			}
+
 			}
 
           // Call the blocked cnn kernel
@@ -178,6 +195,10 @@ void krnl_cnn_layer2(const cnndata_t* input, const cnndata_t* weights,
             too_max = MIN(to + TM_2, M_OFM(2));
             tcc_max = MIN(col + TC_2, C_OFM(2));
             trr_max = MIN(row + TR_2, R_OFM(2));
+
+/*            too_max = MIN(to + TM_2, M_OFM(2));
+            tcc_max = MIN(col + TC_2, C_OFM(2));
+            trr_max = MIN(row + TR_2, R_OFM(2));*/
 
             BufO_write: for(trr = row, irr = 0; trr < trr_max; trr++, irr++) {
                 for(tcc = col, icc = 0; tcc < tcc_max; tcc++, icc++) {

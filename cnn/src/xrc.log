@@ -1,0 +1,14 @@
+Mon Nov 14 16:42:22 2022: Server was asked to start on port: '41099'
+Mon Nov 14 16:42:22 2022: Server is using token UUID: '4e478f5a-5dc2-4a54-836f-5a33fc274faf'
+Mon Nov 14 16:42:22 2022: Attempting to start server on port '41099'
+Mon Nov 14 16:42:22 2022: XRC main fifo: created main fifo '/tmp/xrcmain4e478f5a-5dc2-4a54-836f-5a33fc274faf', fd read = 11
+Mon Nov 14 16:42:22 2022: Running Rule Check Server
+Mon Nov 14 16:42:22 2022: Version 1.6.1
+Mon Nov 14 16:42:23 2022: Rule Check Server: Accepted socket connection from client
+Mon Nov 14 16:42:23 2022: EXCHANGE_TOKEN received, server token: 4e478f5a-5dc2-4a54-836f-5a33fc274faf, passed token: 4e478f5a-5dc2-4a54-836f-5a33fc274faf
+Mon Nov 14 17:34:11 2022: STOP_SERVER received, server token: 4e478f5a-5dc2-4a54-836f-5a33fc274faf, passed token: 4e478f5a-5dc2-4a54-836f-5a33fc274faf
+Mon Nov 14 17:34:11 2022: Socket received request to stop server.
+Mon Nov 14 17:34:11 2022: SERVER: destructor for server bound to port 41099
+Mon Nov 14 17:34:11 2022: XRC main fifo: Good unlink of /tmp/xrcmain4e478f5a-5dc2-4a54-836f-5a33fc274faf
+Mon Nov 14 17:34:11 2022: Server exiting with status 0.
+Mon Nov 14 17:34:11 2022: Closing log file.

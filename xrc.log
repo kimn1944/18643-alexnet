@@ -1,0 +1,306 @@
+Mon Dec  5 19:09:55 2022: Server was asked to start on port: '33673'
+Mon Dec  5 19:09:55 2022: Server is using token UUID: 'a1b05b4a-acbc-4ab5-ba21-87a19a05de23'
+Mon Dec  5 19:09:55 2022: Attempting to start server on port '33673'
+Mon Dec  5 19:09:55 2022: XRC main fifo: created main fifo '/tmp/xrcmaina1b05b4a-acbc-4ab5-ba21-87a19a05de23', fd read = 11
+Mon Dec  5 19:09:55 2022: Running Rule Check Server
+Mon Dec  5 19:09:55 2022: Version 1.6.1
+Mon Dec  5 19:09:56 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 19:09:56 2022: EXCHANGE_TOKEN received, server token: a1b05b4a-acbc-4ab5-ba21-87a19a05de23, passed token: a1b05b4a-acbc-4ab5-ba21-87a19a05de23
+Mon Dec  5 19:12:19 2022: SESSION_MGR: creating session with session uuid: '2bdd0f04-3c73-4510-87b8-1492215742e3' and name 'Hardware'
+Mon Dec  5 19:12:22 2022: SESSION_MGR: closing session for UUID '2bdd0f04-3c73-4510-87b8-1492215742e3' with name 'Hardware'
+Mon Dec  5 19:12:22 2022: SESSION_MGR: creating session with session uuid: 'ff793017-8476-4830-8213-212532743507' and name 'Hardware'
+Mon Dec  5 19:12:37 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 19:12:37 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 19:12:38 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 19:12:38 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 19:12:39 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 19:12:59 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 19:13:00 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 19:13:00 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 19:13:01 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 19:13:02 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 19:13:54 2022: SESSION_MGR: closing session for UUID 'ff793017-8476-4830-8213-212532743507' with name 'Hardware'
+Mon Dec  5 19:13:54 2022: SESSION_MGR: creating session with session uuid: 'ce659379-044c-4b0b-91a5-3367fc73f481' and name 'Hardware'
+Mon Dec  5 19:13:57 2022: SESSION_MGR: closing session for UUID 'ce659379-044c-4b0b-91a5-3367fc73f481' with name 'Hardware'
+Mon Dec  5 20:31:48 2022: SESSION_MGR: creating session with session uuid: '312d1738-7195-4043-8b5a-221ac6f5807d' and name 'Hardware'
+Mon Dec  5 20:31:49 2022: SESSION_MGR: closing session for UUID '312d1738-7195-4043-8b5a-221ac6f5807d' with name 'Hardware'
+Mon Dec  5 20:31:49 2022: SESSION_MGR: creating session with session uuid: '662237eb-1efe-4eb1-bc67-94b671e8aab4' and name 'Hardware'
+Mon Dec  5 20:31:49 2022: SESSION_MGR: creating session with session uuid: '215d17c7-6617-4b5f-8252-a88189038ae8' and name 'Hardware'
+Mon Dec  5 20:31:49 2022: SESSION_MGR: closing session for UUID '662237eb-1efe-4eb1-bc67-94b671e8aab4' with name 'Hardware'
+Mon Dec  5 20:31:49 2022: SESSION_MGR: closing session for UUID '215d17c7-6617-4b5f-8252-a88189038ae8' with name 'Hardware'
+Mon Dec  5 20:31:57 2022: SESSION_MGR: creating session with session uuid: 'eacfc012-3aca-4882-9060-69f2739abc1a' and name 'Hardware'
+Mon Dec  5 20:31:59 2022: SESSION_MGR: closing session for UUID 'eacfc012-3aca-4882-9060-69f2739abc1a' with name 'Hardware'
+Mon Dec  5 20:32:00 2022: SESSION_MGR: creating session with session uuid: 'de4cff39-0123-4514-937e-681cdbacf6e5' and name 'Hardware'
+Mon Dec  5 20:32:14 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:32:14 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:32:15 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:32:15 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:32:16 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:32:39 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:32:39 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:32:41 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:32:41 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:32:44 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:33:42 2022: SESSION_MGR: closing session for UUID 'de4cff39-0123-4514-937e-681cdbacf6e5' with name 'Hardware'
+Mon Dec  5 20:33:42 2022: SESSION_MGR: creating session with session uuid: '1b4667a6-552f-40ba-9ef8-162523f0b0a6' and name 'Hardware'
+Mon Dec  5 20:33:45 2022: SESSION_MGR: closing session for UUID '1b4667a6-552f-40ba-9ef8-162523f0b0a6' with name 'Hardware'
+Mon Dec  5 20:34:11 2022: SESSION_MGR: creating session with session uuid: 'bc655378-f3d5-4d0b-a080-cb2af71774ff' and name 'Hardware'
+Mon Dec  5 20:34:12 2022: SESSION_MGR: closing session for UUID 'bc655378-f3d5-4d0b-a080-cb2af71774ff' with name 'Hardware'
+Mon Dec  5 20:34:12 2022: SESSION_MGR: creating session with session uuid: 'b0b195d6-5bbc-4f28-bc3f-527c0f6b3030' and name 'Hardware'
+Mon Dec  5 20:34:12 2022: SESSION_MGR: creating session with session uuid: '63e82194-c7fc-414d-96ba-2cf04bbd7319' and name 'Hardware'
+Mon Dec  5 20:34:12 2022: SESSION_MGR: closing session for UUID 'b0b195d6-5bbc-4f28-bc3f-527c0f6b3030' with name 'Hardware'
+Mon Dec  5 20:34:13 2022: SESSION_MGR: closing session for UUID '63e82194-c7fc-414d-96ba-2cf04bbd7319' with name 'Hardware'
+Mon Dec  5 20:34:15 2022: SESSION_MGR: creating session with session uuid: 'd290d484-ab86-4dea-a515-7bb17a5f892c' and name 'Hardware'
+Mon Dec  5 20:34:18 2022: SESSION_MGR: closing session for UUID 'd290d484-ab86-4dea-a515-7bb17a5f892c' with name 'Hardware'
+Mon Dec  5 20:34:18 2022: SESSION_MGR: creating session with session uuid: '420e92cf-df2a-4834-be1c-5142255fef87' and name 'Hardware'
+Mon Dec  5 20:34:33 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:34:34 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:34:34 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:34:35 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:34:35 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:34:42 2022: SESSION_MGR: closing session for UUID '420e92cf-df2a-4834-be1c-5142255fef87' with name 'Hardware'
+Mon Dec  5 20:42:35 2022: SESSION_MGR: creating session with session uuid: 'a15567f7-9aad-4ffd-b6c8-cc5ba2194234' and name 'Hardware'
+Mon Dec  5 20:42:36 2022: SESSION_MGR: creating session with session uuid: '8e5b7549-5d79-4ac8-ade2-ba23a82e05c5' and name 'Hardware'
+Mon Dec  5 20:42:36 2022: SESSION_MGR: closing session for UUID 'a15567f7-9aad-4ffd-b6c8-cc5ba2194234' with name 'Hardware'
+Mon Dec  5 20:42:36 2022: SESSION_MGR: creating session with session uuid: '89cabec5-65a0-45f0-8fb8-663a5f5e8b9b' and name 'Hardware'
+Mon Dec  5 20:42:36 2022: SESSION_MGR: closing session for UUID '8e5b7549-5d79-4ac8-ade2-ba23a82e05c5' with name 'Hardware'
+Mon Dec  5 20:42:36 2022: SESSION_MGR: closing session for UUID '89cabec5-65a0-45f0-8fb8-663a5f5e8b9b' with name 'Hardware'
+Mon Dec  5 20:44:52 2022: SESSION_MGR: creating session with session uuid: '0badb20e-4394-4c26-a3e9-3b519d2196b5' and name 'Hardware'
+Mon Dec  5 20:44:55 2022: SESSION_MGR: closing session for UUID '0badb20e-4394-4c26-a3e9-3b519d2196b5' with name 'Hardware'
+Mon Dec  5 20:44:55 2022: SESSION_MGR: creating session with session uuid: 'c7c5868c-747f-4ece-b052-20b850118c97' and name 'Hardware'
+Mon Dec  5 20:45:09 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:45:10 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:45:10 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:45:11 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:45:11 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:45:29 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:45:30 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:45:30 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:45:31 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:45:31 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:46:22 2022: SESSION_MGR: closing session for UUID 'c7c5868c-747f-4ece-b052-20b850118c97' with name 'Hardware'
+Mon Dec  5 20:46:22 2022: SESSION_MGR: creating session with session uuid: 'fcc3ad88-ec93-4c2a-8211-a5c6adb1db30' and name 'Hardware'
+Mon Dec  5 20:46:25 2022: SESSION_MGR: closing session for UUID 'fcc3ad88-ec93-4c2a-8211-a5c6adb1db30' with name 'Hardware'
+Mon Dec  5 20:47:21 2022: SESSION_MGR: creating session with session uuid: 'afa74a30-f329-44d1-98cc-008e941c3db9' and name 'Hardware'
+Mon Dec  5 20:47:21 2022: SESSION_MGR: closing session for UUID 'afa74a30-f329-44d1-98cc-008e941c3db9' with name 'Hardware'
+Mon Dec  5 20:47:22 2022: SESSION_MGR: creating session with session uuid: 'd56fe93c-f088-4524-9860-d71ec66a2020' and name 'Hardware'
+Mon Dec  5 20:47:22 2022: SESSION_MGR: closing session for UUID 'd56fe93c-f088-4524-9860-d71ec66a2020' with name 'Hardware'
+Mon Dec  5 20:47:22 2022: SESSION_MGR: creating session with session uuid: 'b3c81651-dc75-43f2-914c-88f2e83c7128' and name 'Hardware'
+Mon Dec  5 20:47:36 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:47:39 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:48:09 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 20:54:44 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:05:24 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:05:27 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:06:07 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:10:30 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:19:10 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:19:14 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:19:52 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:24:56 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:33:43 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:33:46 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:34:17 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:39:01 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:48:41 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:48:44 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:49:14 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 21:53:42 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 22:01:31 2022: SESSION_MGR: closing session for UUID 'b3c81651-dc75-43f2-914c-88f2e83c7128' with name 'Hardware'
+Mon Dec  5 22:58:30 2022: SESSION_MGR: creating session with session uuid: '602dad01-1630-4551-b98d-e2059670a800' and name 'Hardware'
+Mon Dec  5 22:58:34 2022: SESSION_MGR: closing session for UUID '602dad01-1630-4551-b98d-e2059670a800' with name 'Hardware'
+Mon Dec  5 22:58:34 2022: SESSION_MGR: creating session with session uuid: 'eadfaa9a-2ba3-4a6c-882b-a8c3cf7ce30a' and name 'Hardware'
+Mon Dec  5 22:58:49 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 22:59:01 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 22:59:32 2022: SESSION_MGR: closing session for UUID 'eadfaa9a-2ba3-4a6c-882b-a8c3cf7ce30a' with name 'Hardware'
+Mon Dec  5 22:59:32 2022: SESSION_MGR: creating session with session uuid: 'ebed2519-0c90-4ca1-b8da-e61632374daf' and name 'Hardware'
+Mon Dec  5 22:59:46 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 22:59:49 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 23:00:20 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 23:05:07 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 23:14:32 2022: SESSION_MGR: closing session for UUID 'ebed2519-0c90-4ca1-b8da-e61632374daf' with name 'Hardware'
+Mon Dec  5 23:54:13 2022: SESSION_MGR: creating session with session uuid: '62249d7a-f46e-4422-b5ad-8d6cc80fc5a4' and name 'Hardware'
+Mon Dec  5 23:54:28 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 23:54:44 2022: Rule Check Server: Accepted socket connection from client
+Mon Dec  5 23:55:24 2022: SESSION_MGR: closing session for UUID '62249d7a-f46e-4422-b5ad-8d6cc80fc5a4' with name 'Hardware'
+Tue Dec  6 00:38:26 2022: SESSION_MGR: creating session with session uuid: 'f84212db-0caa-4af8-bba6-b465135f0fb8' and name 'Hardware'
+Tue Dec  6 00:38:29 2022: SESSION_MGR: closing session for UUID 'f84212db-0caa-4af8-bba6-b465135f0fb8' with name 'Hardware'
+Tue Dec  6 00:38:29 2022: SESSION_MGR: creating session with session uuid: '8a33d29b-4f25-4336-9d87-5a654c520ce4' and name 'Hardware'
+Tue Dec  6 00:38:43 2022: Rule Check Server: Accepted socket connection from client
+Tue Dec  6 00:39:02 2022: Rule Check Server: Accepted socket connection from client
+Tue Dec  6 00:39:46 2022: SESSION_MGR: closing session for UUID '8a33d29b-4f25-4336-9d87-5a654c520ce4' with name 'Hardware'
+Tue Dec  6 00:39:46 2022: SESSION_MGR: creating session with session uuid: '5484d672-c0ac-4fbc-add5-16d08e18c3bb' and name 'Hardware'
+Tue Dec  6 00:40:00 2022: Rule Check Server: Accepted socket connection from client
+Tue Dec  6 00:40:03 2022: Rule Check Server: Accepted socket connection from client
+Tue Dec  6 00:40:39 2022: Rule Check Server: Accepted socket connection from client
+Tue Dec  6 00:46:52 2022: Rule Check Server: Accepted socket connection from client
+Tue Dec  6 00:57:57 2022: SESSION_MGR: closing session for UUID '5484d672-c0ac-4fbc-add5-16d08e18c3bb' with name 'Hardware'
+Wed Dec  7 23:23:52 2022: SESSION_MGR: creating session with session uuid: '6bae4943-53f4-486b-847d-3ac9ad94a46e' and name 'Hardware'
+Wed Dec  7 23:23:55 2022: SESSION_MGR: closing session for UUID '6bae4943-53f4-486b-847d-3ac9ad94a46e' with name 'Hardware'
+Wed Dec  7 23:23:55 2022: SESSION_MGR: creating session with session uuid: 'b7c9d882-0e3a-4e46-b3e7-9cc4fc5e8d28' and name 'Hardware'
+Wed Dec  7 23:24:09 2022: Rule Check Server: Accepted socket connection from client
+Wed Dec  7 23:24:21 2022: Rule Check Server: Accepted socket connection from client
+Wed Dec  7 23:24:55 2022: SESSION_MGR: closing session for UUID 'b7c9d882-0e3a-4e46-b3e7-9cc4fc5e8d28' with name 'Hardware'
+Wed Dec  7 23:24:55 2022: SESSION_MGR: creating session with session uuid: '24ba8008-6174-4adb-9fb3-5a3c45b7edc2' and name 'Hardware'
+Wed Dec  7 23:25:09 2022: Rule Check Server: Accepted socket connection from client
+Wed Dec  7 23:25:12 2022: Rule Check Server: Accepted socket connection from client
+Wed Dec  7 23:25:44 2022: Rule Check Server: Accepted socket connection from client
+Wed Dec  7 23:33:06 2022: Rule Check Server: Accepted socket connection from client
+Wed Dec  7 23:47:17 2022: SESSION_MGR: closing session for UUID '24ba8008-6174-4adb-9fb3-5a3c45b7edc2' with name 'Hardware'
+Thu Dec  8 00:08:22 2022: SESSION_MGR: creating session with session uuid: '69ff577c-ad4f-4c9d-99e4-21683e985847' and name 'Hardware'
+Thu Dec  8 00:08:25 2022: SESSION_MGR: closing session for UUID '69ff577c-ad4f-4c9d-99e4-21683e985847' with name 'Hardware'
+Thu Dec  8 00:08:25 2022: SESSION_MGR: creating session with session uuid: '8b8524af-08be-4d48-9f0f-e3c4ef748a5c' and name 'Hardware'
+Thu Dec  8 00:08:39 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 00:08:51 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 00:09:26 2022: SESSION_MGR: creating session with session uuid: '5cc39716-f576-4165-bdcd-d56f5b9aac34' and name 'Hardware'
+Thu Dec  8 00:09:26 2022: SESSION_MGR: closing session for UUID '8b8524af-08be-4d48-9f0f-e3c4ef748a5c' with name 'Hardware'
+Thu Dec  8 00:09:40 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 00:09:43 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 00:10:14 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 00:16:48 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 00:30:14 2022: SESSION_MGR: closing session for UUID '5cc39716-f576-4165-bdcd-d56f5b9aac34' with name 'Hardware'
+Thu Dec  8 10:57:49 2022: SESSION_MGR: creating session with session uuid: '776a8148-d9fa-4f91-87f4-4a3acef46db2' and name 'Hardware'
+Thu Dec  8 10:57:51 2022: SESSION_MGR: closing session for UUID '776a8148-d9fa-4f91-87f4-4a3acef46db2' with name 'Hardware'
+Thu Dec  8 10:57:52 2022: SESSION_MGR: creating session with session uuid: '9ca8c941-9e13-45ef-85f6-e766c8c6fee0' and name 'Hardware'
+Thu Dec  8 10:58:06 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 10:58:18 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 10:58:59 2022: SESSION_MGR: closing session for UUID '9ca8c941-9e13-45ef-85f6-e766c8c6fee0' with name 'Hardware'
+Thu Dec  8 10:58:59 2022: SESSION_MGR: creating session with session uuid: '1a1294b6-cff3-43b5-95da-4538c6729cd8' and name 'Hardware'
+Thu Dec  8 10:59:13 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 10:59:16 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 10:59:48 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 11:08:26 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 11:21:28 2022: SESSION_MGR: closing session for UUID '1a1294b6-cff3-43b5-95da-4538c6729cd8' with name 'Hardware'
+Thu Dec  8 13:03:27 2022: SESSION_MGR: creating session with session uuid: '475218a3-2c13-417b-ab21-4c84ef93ff0a' and name 'Hardware'
+Thu Dec  8 13:03:30 2022: SESSION_MGR: closing session for UUID '475218a3-2c13-417b-ab21-4c84ef93ff0a' with name 'Hardware'
+Thu Dec  8 13:03:30 2022: SESSION_MGR: creating session with session uuid: '696add72-ff14-4b3e-8a4e-8ad068d2ff53' and name 'Hardware'
+Thu Dec  8 13:03:44 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 13:03:57 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 13:04:38 2022: SESSION_MGR: closing session for UUID '696add72-ff14-4b3e-8a4e-8ad068d2ff53' with name 'Hardware'
+Thu Dec  8 13:04:38 2022: SESSION_MGR: creating session with session uuid: '8d402cfc-8ebb-491d-8509-0f4e9cb2a9a7' and name 'Hardware'
+Thu Dec  8 13:04:53 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 13:04:56 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 13:05:28 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 13:13:49 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 13:28:56 2022: SESSION_MGR: closing session for UUID '8d402cfc-8ebb-491d-8509-0f4e9cb2a9a7' with name 'Hardware'
+Thu Dec  8 18:10:02 2022: SESSION_MGR: creating session with session uuid: '97441679-9ebd-44ba-8ec7-d016f72ef3fd' and name 'Hardware'
+Thu Dec  8 18:10:05 2022: SESSION_MGR: closing session for UUID '97441679-9ebd-44ba-8ec7-d016f72ef3fd' with name 'Hardware'
+Thu Dec  8 18:10:05 2022: SESSION_MGR: creating session with session uuid: '5d5153ed-af47-49ab-ba54-9cc50d241915' and name 'Hardware'
+Thu Dec  8 18:10:19 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 18:10:21 2022: SESSION_MGR: closing session for UUID '5d5153ed-af47-49ab-ba54-9cc50d241915' with name 'Hardware'
+Thu Dec  8 18:15:27 2022: SESSION_MGR: creating session with session uuid: 'e167ab79-0465-4434-b83d-2fc9f6a849b9' and name 'Hardware'
+Thu Dec  8 18:15:27 2022: SESSION_MGR: closing session for UUID 'e167ab79-0465-4434-b83d-2fc9f6a849b9' with name 'Hardware'
+Thu Dec  8 18:15:28 2022: SESSION_MGR: creating session with session uuid: 'cac86cff-3a91-45a1-a26a-2e0d10c062e6' and name 'Hardware'
+Thu Dec  8 18:15:42 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 18:15:56 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 18:16:29 2022: SESSION_MGR: creating session with session uuid: '1508d3b2-161b-4ef8-9e4e-3ff8c35e7aa3' and name 'Hardware'
+Thu Dec  8 18:16:29 2022: SESSION_MGR: closing session for UUID 'cac86cff-3a91-45a1-a26a-2e0d10c062e6' with name 'Hardware'
+Thu Dec  8 18:16:43 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 18:16:46 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 18:17:18 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 18:17:53 2022: SESSION_MGR: closing session for UUID '1508d3b2-161b-4ef8-9e4e-3ff8c35e7aa3' with name 'Hardware'
+Thu Dec  8 18:18:38 2022: SESSION_MGR: creating session with session uuid: 'df6f5a1c-8e8d-4856-a301-7b67d6be1119' and name 'Hardware'
+Thu Dec  8 18:18:39 2022: SESSION_MGR: closing session for UUID 'df6f5a1c-8e8d-4856-a301-7b67d6be1119' with name 'Hardware'
+Thu Dec  8 18:18:39 2022: SESSION_MGR: creating session with session uuid: '36e0fa07-328f-413e-bdf0-606e19d1cf62' and name 'Hardware'
+Thu Dec  8 18:18:40 2022: SESSION_MGR: creating session with session uuid: 'aa4a045b-711b-464a-bba6-3aeb372d256a' and name 'Hardware'
+Thu Dec  8 18:18:40 2022: SESSION_MGR: closing session for UUID '36e0fa07-328f-413e-bdf0-606e19d1cf62' with name 'Hardware'
+Thu Dec  8 18:18:54 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 18:18:57 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 18:19:29 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 18:26:57 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 18:39:59 2022: SESSION_MGR: closing session for UUID 'aa4a045b-711b-464a-bba6-3aeb372d256a' with name 'Hardware'
+Thu Dec  8 18:45:26 2022: SESSION_MGR: creating session with session uuid: '10492224-bee4-4eff-aa5a-8caf48fa1c88' and name 'Hardware'
+Thu Dec  8 18:45:28 2022: SESSION_MGR: closing session for UUID '10492224-bee4-4eff-aa5a-8caf48fa1c88' with name 'Hardware'
+Thu Dec  8 18:45:28 2022: SESSION_MGR: creating session with session uuid: 'd46612f2-1151-4f2b-bd04-bcb4144eec34' and name 'Hardware'
+Thu Dec  8 18:45:29 2022: SESSION_MGR: closing session for UUID 'd46612f2-1151-4f2b-bd04-bcb4144eec34' with name 'Hardware'
+Thu Dec  8 18:45:29 2022: SESSION_MGR: creating session with session uuid: 'd1bae2fc-7b9b-411c-b0c4-f04f83a9ede0' and name 'Hardware'
+Thu Dec  8 18:45:29 2022: SESSION_MGR: closing session for UUID 'd1bae2fc-7b9b-411c-b0c4-f04f83a9ede0' with name 'Hardware'
+Thu Dec  8 19:08:10 2022: SESSION_MGR: creating session with session uuid: '5ea89ce1-e5ad-48e8-acfd-579bdc9a197e' and name 'Hardware'
+Thu Dec  8 19:08:12 2022: SESSION_MGR: closing session for UUID '5ea89ce1-e5ad-48e8-acfd-579bdc9a197e' with name 'Hardware'
+Thu Dec  8 19:08:12 2022: SESSION_MGR: creating session with session uuid: '9b63f95a-5002-416c-88ad-de44f8fffc12' and name 'Hardware'
+Thu Dec  8 19:08:13 2022: SESSION_MGR: closing session for UUID '9b63f95a-5002-416c-88ad-de44f8fffc12' with name 'Hardware'
+Thu Dec  8 19:08:13 2022: SESSION_MGR: creating session with session uuid: '538b0bf8-ad31-4817-b1f6-5a56682cf0d0' and name 'Hardware'
+Thu Dec  8 19:08:14 2022: SESSION_MGR: closing session for UUID '538b0bf8-ad31-4817-b1f6-5a56682cf0d0' with name 'Hardware'
+Thu Dec  8 19:14:14 2022: SESSION_MGR: creating session with session uuid: '4940d927-2173-4895-9fb6-7cd45eff9b26' and name 'Hardware'
+Thu Dec  8 19:14:16 2022: SESSION_MGR: closing session for UUID '4940d927-2173-4895-9fb6-7cd45eff9b26' with name 'Hardware'
+Thu Dec  8 19:14:16 2022: SESSION_MGR: creating session with session uuid: 'ba66db17-0fcb-4b21-b64e-770e97befe9d' and name 'Hardware'
+Thu Dec  8 19:14:17 2022: SESSION_MGR: closing session for UUID 'ba66db17-0fcb-4b21-b64e-770e97befe9d' with name 'Hardware'
+Thu Dec  8 19:14:17 2022: SESSION_MGR: creating session with session uuid: '35f4b7ca-c0de-413e-be40-04aab14c03b9' and name 'Hardware'
+Thu Dec  8 19:14:17 2022: SESSION_MGR: closing session for UUID '35f4b7ca-c0de-413e-be40-04aab14c03b9' with name 'Hardware'
+Thu Dec  8 19:26:21 2022: SESSION_MGR: creating session with session uuid: '8ec8e228-f09a-461f-a123-76e76a5285dc' and name 'Hardware'
+Thu Dec  8 19:26:23 2022: SESSION_MGR: closing session for UUID '8ec8e228-f09a-461f-a123-76e76a5285dc' with name 'Hardware'
+Thu Dec  8 19:26:24 2022: SESSION_MGR: creating session with session uuid: 'e6fb00bd-566a-4a83-a4d2-bf6bfee7a663' and name 'Hardware'
+Thu Dec  8 19:26:24 2022: SESSION_MGR: closing session for UUID 'e6fb00bd-566a-4a83-a4d2-bf6bfee7a663' with name 'Hardware'
+Thu Dec  8 19:26:24 2022: SESSION_MGR: creating session with session uuid: '98e3b498-8fbf-4fb9-b0a4-9ffae725abc8' and name 'Hardware'
+Thu Dec  8 19:26:25 2022: SESSION_MGR: closing session for UUID '98e3b498-8fbf-4fb9-b0a4-9ffae725abc8' with name 'Hardware'
+Thu Dec  8 19:30:09 2022: SESSION_MGR: creating session with session uuid: '8b3725d4-d585-47bf-a0f1-8619488c71e6' and name 'Hardware'
+Thu Dec  8 19:30:11 2022: SESSION_MGR: closing session for UUID '8b3725d4-d585-47bf-a0f1-8619488c71e6' with name 'Hardware'
+Thu Dec  8 19:30:12 2022: SESSION_MGR: creating session with session uuid: '9ad813f7-8b20-4ccb-a247-b5d6a024010a' and name 'Hardware'
+Thu Dec  8 19:30:12 2022: SESSION_MGR: creating session with session uuid: '7163a44a-602c-44d1-b00e-ba9dad25b7aa' and name 'Hardware'
+Thu Dec  8 19:30:12 2022: SESSION_MGR: closing session for UUID '9ad813f7-8b20-4ccb-a247-b5d6a024010a' with name 'Hardware'
+Thu Dec  8 19:30:13 2022: SESSION_MGR: closing session for UUID '7163a44a-602c-44d1-b00e-ba9dad25b7aa' with name 'Hardware'
+Thu Dec  8 21:38:24 2022: SESSION_MGR: creating session with session uuid: '12d70d83-f8c4-40ee-be6b-6d6948765ecd' and name 'Hardware'
+Thu Dec  8 21:38:27 2022: SESSION_MGR: closing session for UUID '12d70d83-f8c4-40ee-be6b-6d6948765ecd' with name 'Hardware'
+Thu Dec  8 21:38:27 2022: SESSION_MGR: creating session with session uuid: '85ae23c0-1297-4b91-affc-4a1120efcb66' and name 'Hardware'
+Thu Dec  8 21:38:41 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 21:38:47 2022: SESSION_MGR: closing session for UUID '85ae23c0-1297-4b91-affc-4a1120efcb66' with name 'Hardware'
+Thu Dec  8 21:40:14 2022: SESSION_MGR: creating session with session uuid: '20c6ffe2-1785-4915-92e2-c948be6c1efb' and name 'Hardware'
+Thu Dec  8 21:40:14 2022: SESSION_MGR: closing session for UUID '20c6ffe2-1785-4915-92e2-c948be6c1efb' with name 'Hardware'
+Thu Dec  8 21:40:15 2022: SESSION_MGR: creating session with session uuid: 'c69d7d12-03d5-4fd5-b477-ff7682d591e4' and name 'Hardware'
+Thu Dec  8 21:40:28 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 21:40:41 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 21:41:16 2022: SESSION_MGR: closing session for UUID 'c69d7d12-03d5-4fd5-b477-ff7682d591e4' with name 'Hardware'
+Thu Dec  8 21:41:16 2022: SESSION_MGR: creating session with session uuid: 'dd140345-78e3-4a4b-948f-af55967628c3' and name 'Hardware'
+Thu Dec  8 21:41:30 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 21:41:33 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 21:42:04 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 21:52:06 2022: Rule Check Server: Accepted socket connection from client
+Thu Dec  8 22:07:47 2022: SESSION_MGR: closing session for UUID 'dd140345-78e3-4a4b-948f-af55967628c3' with name 'Hardware'
+Thu Dec  8 22:25:58 2022: SESSION_MGR: creating session with session uuid: '5e5fe0ff-849c-4493-a606-4c0a97f2b651' and name 'Hardware'
+Thu Dec  8 22:26:00 2022: SESSION_MGR: closing session for UUID '5e5fe0ff-849c-4493-a606-4c0a97f2b651' with name 'Hardware'
+Thu Dec  8 22:26:01 2022: SESSION_MGR: creating session with session uuid: '66836f68-22a5-486f-8cad-508fa4e51104' and name 'Hardware'
+Thu Dec  8 22:26:01 2022: SESSION_MGR: closing session for UUID '66836f68-22a5-486f-8cad-508fa4e51104' with name 'Hardware'
+Thu Dec  8 22:26:01 2022: SESSION_MGR: creating session with session uuid: '92b246da-2bb0-4617-87c4-9f02abe72f72' and name 'Hardware'
+Thu Dec  8 22:26:02 2022: SESSION_MGR: closing session for UUID '92b246da-2bb0-4617-87c4-9f02abe72f72' with name 'Hardware'
+Thu Dec  8 22:27:56 2022: SESSION_MGR: creating session with session uuid: '9455a233-73ae-43b5-b53a-fc9c79827073' and name 'Hardware'
+Thu Dec  8 22:27:58 2022: SESSION_MGR: closing session for UUID '9455a233-73ae-43b5-b53a-fc9c79827073' with name 'Hardware'
+Thu Dec  8 22:27:59 2022: SESSION_MGR: creating session with session uuid: 'd4db47e4-a42a-44ce-b794-8352f57325f9' and name 'Hardware'
+Thu Dec  8 22:27:59 2022: SESSION_MGR: closing session for UUID 'd4db47e4-a42a-44ce-b794-8352f57325f9' with name 'Hardware'
+Thu Dec  8 22:27:59 2022: SESSION_MGR: creating session with session uuid: 'bb76516c-35bc-47dc-b874-1153c11209ca' and name 'Hardware'
+Thu Dec  8 22:28:00 2022: SESSION_MGR: closing session for UUID 'bb76516c-35bc-47dc-b874-1153c11209ca' with name 'Hardware'
+Thu Dec  8 22:45:17 2022: SESSION_MGR: creating session with session uuid: '58681aeb-57f5-4d2c-ae9f-d32b50ca935a' and name 'Hardware'
+Thu Dec  8 22:45:19 2022: SESSION_MGR: closing session for UUID '58681aeb-57f5-4d2c-ae9f-d32b50ca935a' with name 'Hardware'
+Thu Dec  8 22:45:19 2022: SESSION_MGR: creating session with session uuid: 'e1879b33-7dc3-4809-9573-6b7e9eeabb34' and name 'Hardware'
+Thu Dec  8 22:45:20 2022: SESSION_MGR: closing session for UUID 'e1879b33-7dc3-4809-9573-6b7e9eeabb34' with name 'Hardware'
+Thu Dec  8 22:45:20 2022: SESSION_MGR: creating session with session uuid: '968c2a28-5615-4677-8f13-6834eb4c3e21' and name 'Hardware'
+Thu Dec  8 22:45:20 2022: SESSION_MGR: closing session for UUID '968c2a28-5615-4677-8f13-6834eb4c3e21' with name 'Hardware'
+Thu Dec  8 23:28:00 2022: SESSION_MGR: creating session with session uuid: '42d1fdd3-2146-4bc2-b865-aefad01e1219' and name 'Hardware'
+Thu Dec  8 23:28:02 2022: SESSION_MGR: closing session for UUID '42d1fdd3-2146-4bc2-b865-aefad01e1219' with name 'Hardware'
+Thu Dec  8 23:28:03 2022: SESSION_MGR: creating session with session uuid: '0a89d35a-1c78-48d5-adb3-b281b0dcec26' and name 'Hardware'
+Thu Dec  8 23:28:03 2022: SESSION_MGR: closing session for UUID '0a89d35a-1c78-48d5-adb3-b281b0dcec26' with name 'Hardware'
+Thu Dec  8 23:28:03 2022: SESSION_MGR: creating session with session uuid: 'e492bae2-c102-41e3-8dd5-851f9e1cddbe' and name 'Hardware'
+Thu Dec  8 23:28:04 2022: SESSION_MGR: closing session for UUID 'e492bae2-c102-41e3-8dd5-851f9e1cddbe' with name 'Hardware'
+Fri Dec  9 11:07:27 2022: SESSION_MGR: creating session with session uuid: '5deccce0-8efa-4e65-aeee-af2427c7c9c3' and name 'Hardware'
+Fri Dec  9 11:07:30 2022: SESSION_MGR: closing session for UUID '5deccce0-8efa-4e65-aeee-af2427c7c9c3' with name 'Hardware'
+Fri Dec  9 11:07:30 2022: SESSION_MGR: creating session with session uuid: '758982d6-b492-446b-b471-6596f5eb1863' and name 'Hardware'
+Fri Dec  9 11:07:31 2022: SESSION_MGR: closing session for UUID '758982d6-b492-446b-b471-6596f5eb1863' with name 'Hardware'
+Fri Dec  9 11:07:31 2022: SESSION_MGR: creating session with session uuid: 'a5244d70-6a5a-4dce-a28a-46009379dc5f' and name 'Hardware'
+Fri Dec  9 11:07:32 2022: SESSION_MGR: closing session for UUID 'a5244d70-6a5a-4dce-a28a-46009379dc5f' with name 'Hardware'
+Fri Dec  9 13:04:33 2022: SESSION_MGR: creating session with session uuid: 'e753f142-e7d3-45ac-ba20-baaac206652a' and name 'Hardware'
+Fri Dec  9 13:04:35 2022: SESSION_MGR: closing session for UUID 'e753f142-e7d3-45ac-ba20-baaac206652a' with name 'Hardware'
+Fri Dec  9 13:04:36 2022: SESSION_MGR: creating session with session uuid: 'd252bf45-e32d-492e-9e83-069fdbfe9e4a' and name 'Hardware'
+Fri Dec  9 13:04:51 2022: Rule Check Server: Accepted socket connection from client
+Fri Dec  9 13:05:07 2022: Rule Check Server: Accepted socket connection from client
+Fri Dec  9 13:05:46 2022: SESSION_MGR: closing session for UUID 'd252bf45-e32d-492e-9e83-069fdbfe9e4a' with name 'Hardware'
+Fri Dec  9 13:05:46 2022: SESSION_MGR: creating session with session uuid: '86b96faa-7a6b-47a9-8a24-d4fa4fb677a7' and name 'Hardware'
+Fri Dec  9 13:06:00 2022: Rule Check Server: Accepted socket connection from client
+Fri Dec  9 13:06:03 2022: Rule Check Server: Accepted socket connection from client
+Fri Dec  9 13:06:34 2022: Rule Check Server: Accepted socket connection from client
+Fri Dec  9 13:13:54 2022: Rule Check Server: Accepted socket connection from client
+Fri Dec  9 13:25:21 2022: SESSION_MGR: closing session for UUID '86b96faa-7a6b-47a9-8a24-d4fa4fb677a7' with name 'Hardware'
+Fri Dec  9 15:59:37 2022: SESSION_MGR: creating session with session uuid: 'd8536bfc-2e0d-428e-9597-85a6e8e1389c' and name 'Hardware'
+Fri Dec  9 15:59:39 2022: SESSION_MGR: closing session for UUID 'd8536bfc-2e0d-428e-9597-85a6e8e1389c' with name 'Hardware'
+Fri Dec  9 15:59:39 2022: SESSION_MGR: creating session with session uuid: '7aea46f8-2010-48c7-92a0-421ded12ccef' and name 'Hardware'
+Fri Dec  9 15:59:40 2022: SESSION_MGR: closing session for UUID '7aea46f8-2010-48c7-92a0-421ded12ccef' with name 'Hardware'
+Fri Dec  9 15:59:40 2022: SESSION_MGR: creating session with session uuid: '9e207301-f0b7-4e4f-a11b-9564eab25253' and name 'Hardware'
+Fri Dec  9 15:59:41 2022: SESSION_MGR: closing session for UUID '9e207301-f0b7-4e4f-a11b-9564eab25253' with name 'Hardware'

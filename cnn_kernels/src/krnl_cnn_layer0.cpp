@@ -261,9 +261,13 @@ void krnl_cnn_layer0(const cnndata_t* input, const cnndata_t* weights,
 
               // Loop bounds
               index_t tii_max, xrr_max, xcc_max;
-              tii_max = MIN(ti + TN_0, N_IFM(0));
+              tii_max = ti + TN_0;
               xrr_max = MIN(row + TR_0, R_OFM(0)) * S_WTS + K_WTS - S_WTS;
               xcc_max = MIN(col + TC_0, C_OFM(0)) * S_WTS + K_WTS - S_WTS;
+
+/*              tii_max = MIN(ti + TN_0, N_IFM(0));
+              xrr_max = MIN(row + TR_0, R_OFM(0)) * S_WTS + K_WTS - S_WTS;
+              xcc_max = MIN(col + TC_0, C_OFM(0)) * S_WTS + K_WTS - S_WTS;*/
 
               BufI_load: for(xrr = row * S_WTS, irr = 0; xrr < xrr_max; xrr++, irr++) {
                   for(xcc = col * S_WTS, icc = 0; xcc < xcc_max; xcc++, icc++) {
@@ -282,8 +286,11 @@ void krnl_cnn_layer0(const cnndata_t* input, const cnndata_t* weights,
 
 				// Loop bounds
 				index_t too_max, tii_max;
-				too_max = MIN(to + TM_0, M_OFM(0));
-				tii_max = MIN(ti + TN_0, N_IFM(0));
+				too_max = to + TM_0;
+				tii_max = ti + TN_0;
+
+/*				too_max = MIN(to + TM_0, M_OFM(0));
+				tii_max = MIN(ti + TN_0, N_IFM(0));*/
 
 				BufW_load:for(irr = 0; irr < K_WTS; irr++) {
 					for(icc = 0; icc < K_WTS; icc++) {
@@ -293,11 +300,11 @@ void krnl_cnn_layer0(const cnndata_t* input, const cnndata_t* weights,
 								BufW[ioo][iii][irr][icc] = ARRAYw_0(weights, too, tii, irr, icc, M_OFM(0), N_IFM(0), K_WTS, K_WTS);
 							}
 
-							if (iii < TN_0) {
+/*							if (iii < TN_0) {
 								for(; iii < TN_0; iii++) {
 									BufW[ioo][iii][irr][icc] = 0;
 								}
-							}
+							}*/
 						}
 					}
 				}
@@ -315,9 +322,13 @@ void krnl_cnn_layer0(const cnndata_t* input, const cnndata_t* weights,
 
             // Loop bounds
             index_t too_max, tcc_max, trr_max;
-            too_max = MIN(to + TM_0, M_OFM(0));
+            too_max = to + TM_0;
             tcc_max = MIN(col + TC_0, C_OFM(0));
             trr_max = MIN(row + TR_0, R_OFM(0));
+
+/*            too_max = MIN(to + TM_0, M_OFM(0));
+            tcc_max = MIN(col + TC_0, C_OFM(0));
+            trr_max = MIN(row + TR_0, R_OFM(0));*/
 
             BufO_write: for(trr = row, irr = 0; trr < trr_max; trr++, irr++) {
                 for(tcc = col, icc = 0; tcc < tcc_max; tcc++, icc++) {

@@ -93,4 +93,4 @@ typedef uint32_t index_t;
 extern "C"
 #endif
 void krnl_cnn_layer3(const cnndata_t* input, const cnndata_t* weights,
-        cnndata_t* output, uint64_t batch_size);
+        cnndata_t* output, uint64_t batch_size, uint64_t R, uint64_t C, uint64_t M, uint64_t N);

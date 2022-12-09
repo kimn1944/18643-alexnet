@@ -65,7 +65,7 @@ extern "C" {
 
 
 void krnl_cnn_layer3(const cnndata_t* input, const cnndata_t* weights,
-        cnndata_t* output, uint64_t batch_size) {
+        cnndata_t* output, uint64_t batch_size, uint64_t R, uint64_t C, uint64_t M, uint64_t N) {
 
   index_t iter;
   index_t row, col, to, ti;
@@ -80,9 +80,9 @@ void krnl_cnn_layer3(const cnndata_t* input, const cnndata_t* weights,
 #pragma HLS ARRAY_PARTITION variable=BufI type=complete dim=1 //factor=4
 
   Batch: for(iter = 0; iter < batch_size; iter++) {        // Batch Loop
-    R: for(row = 0; row < R_OFM(3); row += TR_3) {     // Tiled Row Loop
-      C: for(col = 0; col < C_OFM(3); col += TC_3) {   // Tiled Column Loop
-    	N: for(ti = 0; ti < N_IFM(3); ti += TN_3) {
+    R: for(row = 0; row < R; row += TR_3) {     // Tiled Row Loop
+      C: for(col = 0; col < C; col += TC_3) {   // Tiled Column Loop
+    	N: for(ti = 0; ti < N; ti += TN_3) {
           index_t trr, tcc, too, tii;
 
           // Load active input feature map into local buffer
@@ -96,18 +96,18 @@ void krnl_cnn_layer3(const cnndata_t* input, const cnndata_t* weights,
 				// Loop bounds
 				index_t tii_max, xrr_max, xcc_max;
 				tii_max = ti + TN_3;
-				xrr_max = (row + TR_3) * S_WTS + K_WTS - S_WTS;
-				xcc_max = (col + TC_3) * S_WTS + K_WTS - S_WTS;
+				xrr_max = MIN(row + TR_3, R) * S_WTS + K_WTS - S_WTS;
+				xcc_max = MIN(col + TC_3, C) * S_WTS + K_WTS - S_WTS;
 
-/*				tii_max = MIN(ti + TN_3, N_IFM(3));
-				xrr_max = MIN(row + TR_3, R_OFM(3)) * S_WTS + K_WTS - S_WTS;
-				xcc_max = MIN(col + TC_3, C_OFM(3)) * S_WTS + K_WTS - S_WTS;*/
+/*				tii_max = MIN(ti + TN_3, N);
+				xrr_max = MIN(row + TR_3, R) * S_WTS + K_WTS - S_WTS;
+				xcc_max = MIN(col + TC_3, C) * S_WTS + K_WTS - S_WTS;*/
 
 				BufI_load: for(xrr = row * S_WTS, irr = 0; xrr < xrr_max; xrr++, irr++) {
 					for(xcc = col * S_WTS, icc = 0; xcc < xcc_max; xcc++, icc++) {
 
 						for(tii = ti, iii = 0; tii < tii_max; tii++, iii++) {
-							BufI[iii][irr][icc] = ARRAYi_3(input, iter, tii, xrr, xcc, batch_size, N_IFM(3), R_IFM(3), C_IFM(3));
+							BufI[iii][irr][icc] = ARRAYi_3(input, iter, tii, xrr, xcc, batch_size, N, R_IFM(3), C_IFM(3));
 						}
 
 /*						if (iii < TN_3) {
@@ -120,7 +120,7 @@ void krnl_cnn_layer3(const cnndata_t* input, const cnndata_t* weights,
 			}
 
 
-          M: for(to = 0; to < M_OFM(3); to += TM_3) {
+          M: for(to = 0; to < M; to += TM_3) {
 
             // Load active weights into local buffer
             {
@@ -129,18 +129,18 @@ void krnl_cnn_layer3(const cnndata_t* input, const cnndata_t* weights,
 
               // Loop bounds
               index_t too_max, tii_max;
-              too_max = MIN(to + TM_3, M_OFM(3));
+              too_max = MIN(to + TM_3, M);
               tii_max = ti + TN_3;
 
-/*              too_max = MIN(to + TM_3, M_OFM(3));
-              tii_max = MIN(ti + TN_3, N_IFM(3));*/
+/*              too_max = MIN(to + TM_3, M);
+              tii_max = MIN(ti + TN_3, N);*/
 
               BufW_load:for(irr = 0; irr < K_WTS; irr++) {
                     for(icc = 0; icc < K_WTS; icc++) {
                     	for(too = to, ioo = 0; too < too_max; too++, ioo++) {
                     		for(tii = ti, iii = 0; tii < tii_max; tii++, iii++) {
                       BufW[ioo][iii][irr][icc] = ARRAYw_3(weights, too, tii, irr,
-                        icc, M_OFM(3), N_IFM(3), K_WTS, K_WTS);
+                        icc, M, N, K_WTS, K_WTS);
                     }
 
 /*                    		if (iii < TN_3) {
@@ -161,13 +161,13 @@ void krnl_cnn_layer3(const cnndata_t* input, const cnndata_t* weights,
 
 			  // Loop bounds
 			  index_t too_max, tcc_max, trr_max;
-			  too_max = MIN(to + TM_3, M_OFM(3));
-			  tcc_max = col + TC_3;
-			  trr_max = row + TR_3;
+			  too_max = MIN(to + TM_3, M);
+			  tcc_max = MIN(col + TC_3, C);
+			  trr_max = MIN(row + TR_3, R);
 
-/*			  too_max = MIN(to + TM_3, M_OFM(3));
-			  tcc_max = MIN(col + TC_3, C_OFM(3));
-			  trr_max = MIN(row + TR_3, R_OFM(3));*/
+/*			  too_max = MIN(to + TM_3, M);
+			  tcc_max = MIN(col + TC_3, C);
+			  trr_max = MIN(row + TR_3, R);*/
 
 			  if (ti == 0) {
 				  BufO_zero: for(trr = row, irr = 0; trr < trr_max; trr++, irr++) {
@@ -181,7 +181,7 @@ void krnl_cnn_layer3(const cnndata_t* input, const cnndata_t* weights,
 				  BufO_read: for(trr = row, irr = 0; trr < trr_max; trr++, irr++) {
 					  for(tcc = col, icc = 0; tcc < tcc_max; tcc++, icc++) {
 						for(too = to, ioo = 0; too < too_max; too++, ioo++) {
-							BufO[ioo][irr][icc] = ARRAYo_3(output, iter, too, trr, tcc, batch_size, M_OFM(3), R_OFM(3), C_OFM(3));
+							BufO[ioo][irr][icc] = ARRAYo_3(output, iter, too, trr, tcc, batch_size, M, R, C);
 						}
 					  }
 				  	}
@@ -203,19 +203,19 @@ void krnl_cnn_layer3(const cnndata_t* input, const cnndata_t* weights,
 
             // Loop bounds
             index_t too_max, tcc_max, trr_max;
-            too_max = MIN(to + TM_3, M_OFM(3));
-            tcc_max = col + TC_3;
-            trr_max = row + TR_3;
+            too_max = MIN(to + TM_3, M);
+            tcc_max = MIN(col + TC_3, C);
+            trr_max = MIN(row + TR_3, R);
 
-/*            too_max = MIN(to + TM_3, M_OFM(3));
-            tcc_max = MIN(col + TC_3, C_OFM(3));
-            trr_max = MIN(row + TR_3, R_OFM(3));*/
+/*            too_max = MIN(to + TM_3, M);
+            tcc_max = MIN(col + TC_3, C);
+            trr_max = MIN(row + TR_3, R);*/
 
             BufO_write: for(trr = row, irr = 0; trr < trr_max; trr++, irr++) {
                 for(tcc = col, icc = 0; tcc < tcc_max; tcc++, icc++) {
                 	for(too = to, ioo = 0; too < too_max; too++, ioo++) {
-                  ARRAYo_3(output, iter, too, trr, tcc, batch_size, M_OFM(3),
-                    R_OFM(3), C_OFM(3)) = BufO[ioo][irr][icc];
+                  ARRAYo_3(output, iter, too, trr, tcc, batch_size, M,
+                    R, C) = BufO[ioo][irr][icc];
                    }
                  }
                }

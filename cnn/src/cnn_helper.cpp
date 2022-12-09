@@ -105,18 +105,18 @@ void cnn_run_kernel(cl_object &cl_obj, krnl_object *krnl_obj, times_t *times) {
 
     // Layer 3
     gettimeofday(&times->layer23_recon_start, NULL);
-    program_kernel(cl_obj, krnl_obj[3]);
+//    program_kernel(cl_obj, krnl_obj[3]);
     gettimeofday(&times->layer23_recon_end, NULL);
     gettimeofday(&times->layer3_start, NULL);
-    execute_kernel(cl_obj, 3, false);
+    execute_kernel(cl_obj, 3, true);
     gettimeofday(&times->layer3_end, NULL);
 
     // Layer 4
     gettimeofday(&times->layer34_recon_start, NULL);
-    program_kernel(cl_obj, krnl_obj[4]);
+//    program_kernel(cl_obj, krnl_obj[4]);
     gettimeofday(&times->layer34_recon_end, NULL);
     gettimeofday(&times->layer4_start, NULL);
-    execute_kernel(cl_obj, 4, false);
+    execute_kernel(cl_obj, 4, true);
     gettimeofday(&times->layer4_end, NULL);
 
     std::cout << "Kernel executions completed" << std::endl;

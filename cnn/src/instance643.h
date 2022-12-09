@@ -56,7 +56,7 @@ static inline bool nearlyEqual(cnndata_t a, cnndata_t b) { return a == b; }
                                                  FULLSIZE
 *********************************************************************************************************/
 
-#define BATCH_SIZE 30
+#define BATCH_SIZE 1
 
 //
 // Layer 4

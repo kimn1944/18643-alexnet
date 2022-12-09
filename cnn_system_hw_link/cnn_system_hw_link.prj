@@ -9,6 +9,10 @@
             <args name="weights" master="true" memory=""/>
             <args name="output" master="true" memory=""/>
             <args name="batch_size"/>
+            <args name="R"/>
+            <args name="C"/>
+            <args name="M"/>
+            <args name="N"/>
           </computeUnits>
         </kernels>
       </binaryContainers>
@@ -115,6 +119,10 @@
             <args name="weights" master="true" memory=""/>
             <args name="output" master="true" memory=""/>
             <args name="batch_size"/>
+            <args name="R"/>
+            <args name="C"/>
+            <args name="M"/>
+            <args name="N"/>
           </computeUnits>
         </kernels>
       </binaryContainers>
@@ -181,6 +189,10 @@
             <args name="weights" master="true" memory=""/>
             <args name="output" master="true" memory=""/>
             <args name="batch_size"/>
+            <args name="R"/>
+            <args name="C"/>
+            <args name="M"/>
+            <args name="N"/>
           </computeUnits>
         </kernels>
       </binaryContainers>
@@ -233,6 +245,10 @@
             <args name="weights" master="true" memory=""/>
             <args name="output" master="true" memory=""/>
             <args name="batch_size"/>
+            <args name="R"/>
+            <args name="C"/>
+            <args name="M"/>
+            <args name="N"/>
           </computeUnits>
         </kernels>
       </binaryContainers>

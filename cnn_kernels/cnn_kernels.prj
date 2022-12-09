@@ -13,6 +13,10 @@
         <args name="weights" master="true"/>
         <args name="output" master="true"/>
         <args name="batch_size"/>
+        <args name="R"/>
+        <args name="C"/>
+        <args name="M"/>
+        <args name="N"/>
       </kernels>
       <kernels name="krnl_cnn_layer2" sourceFile="src/krnl_cnn_layer2.cpp">
         <args name="input" master="true"/>
@@ -79,6 +83,10 @@
         <args name="weights" master="true"/>
         <args name="output" master="true"/>
         <args name="batch_size"/>
+        <args name="R"/>
+        <args name="C"/>
+        <args name="M"/>
+        <args name="N"/>
       </kernels>
       <kernels name="krnl_cnn_layer2" sourceFile="src/krnl_cnn_layer2.cpp">
         <args name="input" master="true"/>
@@ -121,6 +129,10 @@
         <args name="weights" master="true"/>
         <args name="output" master="true"/>
         <args name="batch_size"/>
+        <args name="R"/>
+        <args name="C"/>
+        <args name="M"/>
+        <args name="N"/>
       </kernels>
       <kernels name="krnl_cnn_layer2" sourceFile="src/krnl_cnn_layer2.cpp">
         <args name="input" master="true"/>
@@ -153,6 +165,10 @@
         <args name="weights" master="true"/>
         <args name="output" master="true"/>
         <args name="batch_size"/>
+        <args name="R"/>
+        <args name="C"/>
+        <args name="M"/>
+        <args name="N"/>
       </kernels>
       <kernels name="krnl_cnn_layer2" sourceFile="src/krnl_cnn_layer2.cpp">
         <args name="input" master="true"/>

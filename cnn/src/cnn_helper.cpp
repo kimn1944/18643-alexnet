@@ -84,12 +84,12 @@ void cnn_run_kernel(cl_object &cl_obj, krnl_object *krnl_obj, times_t *times) {
 
     // Layer 0
     gettimeofday(&times->layer0_start, NULL);
-    execute_kernel(cl_obj, 0, false);
+    execute_kernel(cl_obj, 0, true);
     gettimeofday(&times->layer0_end, NULL);
 
     // Layer 1
     gettimeofday(&times->layer01_recon_start, NULL);
-    program_kernel(cl_obj, krnl_obj[1]);
+//    program_kernel(cl_obj, krnl_obj[1]);
     gettimeofday(&times->layer01_recon_end, NULL);
     gettimeofday(&times->layer1_start, NULL);
     execute_kernel(cl_obj, 1, true);

@@ -94,7 +94,7 @@ void krnl_cnn_layer1(const cnndata_t* input, const cnndata_t* weights,
 
 				// Loop bounds
 				index_t tii_max, xrr_max, xcc_max;
-				tii_max = ti + TN_1;
+				tii_max = MIN(ti + TN_1, N);
 				xrr_max = MIN(row + TR_1, R) * S_WTS + K_WTS - S_WTS;
 				xcc_max = MIN(col + TC_1, C) * S_WTS + K_WTS - S_WTS;
 
@@ -132,7 +132,7 @@ void krnl_cnn_layer1(const cnndata_t* input, const cnndata_t* weights,
               // Loop bounds
               index_t too_max, tii_max;
               too_max = MIN(to + TM_1, M);
-              tii_max = ti + TN_1;
+              tii_max = MIN(ti + TN_1, N);
 
 /*              too_max = MIN(to + TM_1, M);
               tii_max = MIN(ti + TN_1, N);*/

@@ -156,7 +156,7 @@ std::cout << "===== Optimizing for BufO in Layer "
     read_xclbin(xclbinFilename[4], cl_obj.bins);
 
     cout << "\n===== Programming kernel ======" << endl;
-    program_kernel(cl_obj, cnn_obj[0]);
+    program_kernel(cl_obj, cnn_obj[1]);
 #endif
 
     cout << "\n===== Allocating buffers ======" << endl;

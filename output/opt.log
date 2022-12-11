@@ -1,0 +1,123 @@
+=====
+======
+
+===== Optimizing for BufO in Layer 0 ======
+===== Optimizing for BufI in Layer 1 ======
+===== Optimizing for BufI in Layer 2 ======
+===== Optimizing for BufI in Layer 3 ======
+===== Optimizing for BufI in Layer 4 ======
+
+===== Printing the CNN parameters Layer 0 ======
+Batch size: 1
+Layer Parameters: 
+K_wts: 	4	S_wts:	2
+R_ofm:	158	C_ofm:	158	M_ofm:	64	N_ifm:	4	R_ifm:	318	C_ifm:	318
+Kernel Parameters: 
+Tr: 	4	Tc:	4	Tm:	4	Tn:	3
+
+===== Printing the CNN parameters Layer 1 ======
+Batch size: 1
+Layer Parameters: 
+K_wts: 	4	S_wts:	2
+R_ofm:	78	C_ofm:	78	M_ofm:	128	N_ifm:	64	R_ifm:	158	C_ifm:	158
+Kernel Parameters: 
+Tr: 	4	Tc:	4	Tm:	4	Tn:	3
+
+===== Printing the CNN parameters Layer 2 ======
+Batch size: 1
+Layer Parameters: 
+K_wts: 	4	S_wts:	2
+R_ofm:	38	C_ofm:	38	M_ofm:	256	N_ifm:	128	R_ifm:	78	C_ifm:	78
+Kernel Parameters: 
+Tr: 	4	Tc:	4	Tm:	4	Tn:	3
+
+===== Printing the CNN parameters Layer 3 ======
+Batch size: 1
+Layer Parameters: 
+K_wts: 	4	S_wts:	2
+R_ofm:	18	C_ofm:	18	M_ofm:	256	N_ifm:	256	R_ifm:	38	C_ifm:	38
+Kernel Parameters: 
+Tr: 	18	Tc:	18	Tm:	3	Tn:	32
+
+===== Printing the CNN parameters Layer 4 ======
+Batch size: 1
+Layer Parameters: 
+K_wts: 	4	S_wts:	2
+R_ofm:	8	C_ofm:	8	M_ofm:	128	N_ifm:	256	R_ifm:	18	C_ifm:	18
+Kernel Parameters: 
+Tr: 	4	Tc:	4	Tm:	4	Tn:	3
+
+===== Initialize device ======
+Initializing device...
+
+===== Reading xclbin ======
+INFO: Reading binary_container_0.xclbin
+Loading: 'binary_container_0.xclbin'
+INFO: Reading binary_container_1.xclbin
+Loading: 'binary_container_1.xclbin'
+INFO: Reading binary_container_2.xclbin
+Loading: 'binary_container_2.xclbin'
+INFO: Reading binary_container_3.xclbin
+Loading: 'binary_container_3.xclbin'
+INFO: Reading binary_container_4.xclbin
+Loading: 'binary_container_4.xclbin'
+
+===== Programming kernel ======
+Programming kernel krnl_cnn_layer0...
+
+===== Allocating buffers ======
+
+===== Execution and Timing starts ======
+Running kernel for layer 0...
+Programming kernel krnl_cnn_layer1...
+Running kernel for layer 1...
+Programming kernel krnl_cnn_layer2...
+Running kernel for layer 2...
+Programming kernel krnl_cnn_layer3...
+Running kernel for layer 3...
+Programming kernel krnl_cnn_layer4...
+Running kernel for layer 4...
+Kernel executions completed
+Execution and Timing finished!
+
+===== Verification starts ======
+Verifying cnn result...
+CNN layer 0 TEST PASSED
+
+Verifying cnn result...
+CNN layer 1 TEST PASSED
+
+Verifying cnn result...
+CNN layer 2 TEST PASSED
+
+Verifying cnn result...
+CNN layer 3 TEST PASSED
+
+Verifying cnn result...
+CNN layer 4 TEST PASSED
+
+===== Reporting measured throughput ======
+Layer0 Runtime = 5123920.0 (microsec) 
+
+Layer01 Recon Runtime = 92024.0 (microsec) 
+
+Layer1 Runtime = 4145312.0 (microsec) 
+
+Layer12 Recon Runtime = 89440.0 (microsec) 
+
+Layer2 Runtime = 3786321.0 (microsec) 
+
+Layer23 Recon Runtime = 135176.0 (microsec) 
+
+Layer3 Runtime = 66739.0 (microsec) 
+
+Layer34 Recon Runtime = 88234.0 (microsec) 
+
+Layer4 Runtime = 166747.0 (microsec) 
+
+Total Runtime = 13693969.0 (microsec) 
+
+# of operations = 204505088 + 1594884096 + 1514143744 + 679477248 + 67108864
+Throughput: 0.29649 GigaOP/sec
+
+===== Exiting ======
